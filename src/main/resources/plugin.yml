@@ -1,0 +1,9 @@
+name: YaAddition
+version: ${project.version}
+main: io.github.apjifengc.yaaddition.YaAddition
+api-version: 1.16
+prefix: YaAddition
+depend: [ YaLib ]
+authors: [ APJifengc ]
+description: Create custom blocks, items and more for your server or plugin.
+website: https://github.com/Yallage/YaAddition
