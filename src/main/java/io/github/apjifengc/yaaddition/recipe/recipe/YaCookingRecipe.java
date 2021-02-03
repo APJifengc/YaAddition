@@ -12,12 +12,13 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
 
+import io.github.apjifengc.yaaddition.recipe.excption.RecipeException;
 import io.github.apjifengc.yaaddition.recipe.util.RecipeType;
 
 /**
  * 所有烧制配方的父类
  */
-public class YaCookingRecipe extends YaRecipe {
+public abstract class YaCookingRecipe extends YaRecipe {
 
     @Getter
     @Setter
@@ -42,10 +43,9 @@ public class YaCookingRecipe extends YaRecipe {
         this.type = type;
     }
 
-    /**
-     * 将配方保存为文件，路径为{@link RecipeType#getPath()}
-     */
-    public void save() throws IOException {
+    @Override
+    public void save() throws IOException, RecipeException {
+        selfCheck();
         HashMap<String, Object> map = new HashMap<>();
         map.put("type", this.type);
         map.put("result", this.result);
@@ -56,22 +56,10 @@ public class YaCookingRecipe extends YaRecipe {
     }
 
     /**
-     * 从文件名加载配方，路径为{@link RecipeType#getPath()}
-     * 
-     * @param fileName 配方文件名
-     */
-    protected void load(@NonNull String fileName) throws Exception {
-        String path = this.type.getPath() + fileName;
-        load(new File(path));
-    }
-
-    /**
-     * 从文件加载配方
-     * 
      * @param file 配方文件
-     * @throws Exception
      */
-    protected void load(@NonNull File file) throws Exception {
+    @Override
+    public void load(@NonNull File file) throws IOException, RecipeException, ClassNotFoundException {
         try (BukkitObjectInputStream ois = new BukkitObjectInputStream(new FileInputStream(file));) {
             HashMap<String, Object> map = new HashMap<>();
             Object readMap = ois.readObject();
@@ -85,14 +73,11 @@ public class YaCookingRecipe extends YaRecipe {
                 this.type = (RecipeType) map.get("type");
             }
         }
+        selfCheck();
     }
 
-    /**
-     * 检测配方是否完整
-     * 
-     * @return 如果完整返回true否则返回false
-     */
-    protected boolean isIncomplete() {
+    @Override
+    public boolean isIncomplete() {
         return this.cookingSource == null || this.result == null;
     }
 }

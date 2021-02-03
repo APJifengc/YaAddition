@@ -112,8 +112,8 @@ public class InGameRecipeBuilder {
     /**
      * 手动添加熔炉配方
      * 
-     * @param cookingResult     产物
      * @param cookingSource     材料
+     * @param cookingResult     产物
      * @param cookingExperience 获得的经验
      * @param cookingTime       烧制时间
      * @param namespacedKey     命名空间
@@ -155,8 +155,8 @@ public class InGameRecipeBuilder {
     /**
      * 手动添加高炉配方
      * 
-     * @param cookingResult     产物
      * @param cookingSource     材料
+     * @param cookingResult     产物
      * @param cookingExperience 获得的经验
      * @param cookingTime       熔炼时间
      * @param namespacedKey     命名空间
@@ -197,8 +197,8 @@ public class InGameRecipeBuilder {
     /**
      * 手动添加烟熏炉配方
      * 
-     * @param cookingResult     产物
      * @param cookingSource     材料
+     * @param cookingResult     产物
      * @param cookingExperience 获得的经验
      * @param cookingTime       烹饪时间
      * @param namespacedKey     命名空间
@@ -240,8 +240,8 @@ public class InGameRecipeBuilder {
     /**
      * 手动添加篝火配方
      * 
-     * @param cookingResult     产物
      * @param cookingSource     材料
+     * @param cookingResult     产物
      * @param cookingExperience 获得的经验
      * @param cookingTime       烹饪时间
      * @param namespacedKey     命名空间
@@ -282,8 +282,8 @@ public class InGameRecipeBuilder {
     /**
      * 手动添加切石机配方
      * 
-     * @param cuttingResult 产物
      * @param cuttingSource 材料
+     * @param cuttingResult 产物
      * @param namespacedKey 命名空间
      */
     public static void stoneCutter(@NonNull ItemStack cuttingSource, @NonNull ItemStack cuttingResult,
@@ -307,9 +307,9 @@ public class InGameRecipeBuilder {
     /**
      * 手动添加锻造台配方
      * 
-     * @param smithingResult   产物
      * @param smithingBase     基础物品
      * @param smithingAddition 附加物品
+     * @param smithingResult   产物
      * @param namespacedKey    命名空间
      */
     public static void smithingTable(@NonNull ItemStack smithingBase, @NonNull ItemStack smithingAddition,
@@ -325,7 +325,7 @@ public class InGameRecipeBuilder {
      * 从配置文件加载所有配方
      */
     public static void buildAll() {
-        String[] recipes = new File(RecipeType.SHAPED_CRAFT_RECIPE.getPath()).list();
+        String[] recipes = new File(RecipeType.SHAPED_CRAFT.getPath()).list();
 
         if (recipes != null) {
 
@@ -342,7 +342,7 @@ public class InGameRecipeBuilder {
             }
         }
 
-        recipes = new File(RecipeType.SHAPELESS_CRAFT_RECIPE.getPath()).list();
+        recipes = new File(RecipeType.SHAPELESS_CRAFT.getPath()).list();
 
         if (recipes != null) {
 
@@ -359,7 +359,7 @@ public class InGameRecipeBuilder {
             }
         }
 
-        recipes = new File(RecipeType.FURNACE_RECIPE.getPath()).list();
+        recipes = new File(RecipeType.FURNACE.getPath()).list();
 
         if (recipes != null) {
 
@@ -376,7 +376,7 @@ public class InGameRecipeBuilder {
             }
         }
 
-        recipes = new File(RecipeType.SMOKER_RECIPE.getPath()).list();
+        recipes = new File(RecipeType.SMOKER.getPath()).list();
 
         if (recipes != null) {
 
@@ -393,7 +393,7 @@ public class InGameRecipeBuilder {
             }
         }
 
-        recipes = new File(RecipeType.BLAST_FURNACE_RECIPE.getPath()).list();
+        recipes = new File(RecipeType.BLAST_FURNACE.getPath()).list();
 
         if (recipes != null) {
 
@@ -410,7 +410,7 @@ public class InGameRecipeBuilder {
             }
         }
 
-        recipes = new File(RecipeType.CAMPFIRE_RECIPE.getPath()).list();
+        recipes = new File(RecipeType.CAMPFIRE.getPath()).list();
 
         if (recipes != null) {
 
@@ -427,7 +427,7 @@ public class InGameRecipeBuilder {
             }
         }
 
-        recipes = new File(RecipeType.STONE_CUTTER_RECIPE.getPath()).list();
+        recipes = new File(RecipeType.STONE_CUTTER.getPath()).list();
 
         if (recipes != null) {
 
@@ -444,7 +444,7 @@ public class InGameRecipeBuilder {
             }
         }
 
-        recipes = new File(RecipeType.SMITHING_TABLE_RECIPE.getPath()).list();
+        recipes = new File(RecipeType.SMITHING_TABLE.getPath()).list();
 
         if (recipes != null) {
 

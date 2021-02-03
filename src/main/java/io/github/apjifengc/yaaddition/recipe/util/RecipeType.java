@@ -4,14 +4,15 @@ package io.github.apjifengc.yaaddition.recipe.util;
  * 枚举所有配方类型
  */
 public enum RecipeType {
-    SHAPED_CRAFT_RECIPE("crafting_table/shaped/", "shaped"),
-    SHAPELESS_CRAFT_RECIPE("crafting_table/shapeless/", "shapless"), 
-    FURNACE_RECIPE("furnace"), 
-    SMOKER_RECIPE("smoker"),
-    BLAST_FURNACE_RECIPE("blast_furnace"), 
-    CAMPFIRE_RECIPE("campfire"), 
-    STONE_CUTTER_RECIPE("stone_cutter"),
-    SMITHING_TABLE_RECIPE("smithing_table");
+    SHAPED_CRAFT("crafting_table/shaped/", "shaped"),
+    SHAPELESS_CRAFT("crafting_table/shapeless/", "shapless"), 
+    FURNACE("furnace"), 
+    SMOKER("smoker"),
+    BLAST_FURNACE("blast_furnace"), 
+    CAMPFIRE("campfire"), 
+    STONE_CUTTER("stone_cutter"),
+    SMITHING_TABLE("smithing_table"),
+    BREWING_STAND("smithing_table");
 
     private final String parentPath = "plugins/YaAddition/recipes/";
 

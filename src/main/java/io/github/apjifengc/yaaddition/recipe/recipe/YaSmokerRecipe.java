@@ -1,7 +1,9 @@
+
 package io.github.apjifengc.yaaddition.recipe.recipe;
 
 import java.io.File;
 
+import io.github.apjifengc.yaaddition.recipe.excption.IncompleteRecipeException;
 import io.github.apjifengc.yaaddition.recipe.excption.WrongRecipeTypeException;
 import io.github.apjifengc.yaaddition.recipe.util.RecipeType;
 
@@ -17,7 +19,7 @@ public class YaSmokerRecipe extends YaCookingRecipe {
      * 新建空的烟熏炉配方
      */
     public YaSmokerRecipe() {
-        super(RecipeType.SMOKER_RECIPE);
+        super(RecipeType.SMOKER);
     }
 
     /**
@@ -30,44 +32,23 @@ public class YaSmokerRecipe extends YaCookingRecipe {
      */
     public YaSmokerRecipe(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult, float cookingExperience,
             int cookingTime) {
-        super(cookingResult, cookingSource, cookingExperience, cookingTime, RecipeType.SMOKER_RECIPE);
+        super(cookingResult, cookingSource, cookingExperience, cookingTime, RecipeType.SMOKER);
     }
 
     public YaSmokerRecipe(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult, float cookingExperience) {
-        super(cookingResult, cookingSource, cookingExperience, 100, RecipeType.SMOKER_RECIPE);
+        super(cookingResult, cookingSource, cookingExperience, 100, RecipeType.SMOKER);
     }
 
     public YaSmokerRecipe(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult, int cookingTime) {
-        super(cookingResult, cookingSource, 0, cookingTime, RecipeType.SMOKER_RECIPE);
+        super(cookingResult, cookingSource, 0, cookingTime, RecipeType.SMOKER);
     }
 
     public YaSmokerRecipe(@NonNull ItemStack cookingResult, @NonNull ItemStack cookingSource) {
-        super(cookingResult, cookingSource, 0, 100, RecipeType.SMOKER_RECIPE);
+        super(cookingResult, cookingSource, 0, 100, RecipeType.SMOKER);
     }
 
-    /**
-     * 从文件名加载配方，路径为{@link RecipeType#getPath()}
-     * 
-     * @param fileName 配方文件名
-     */
     @Override
-    public void load(@NonNull String fileName) throws Exception {
-        super.load(fileName);
-        if (this.cookingSource == null || this.result == null || !this.type.equals(RecipeType.SMOKER_RECIPE)) {
-            throw new WrongRecipeTypeException(fileName);
-        }
-    }
-
-    /**
-     * 从文件加载配方
-     * 
-     * @param file 配方文件
-     */
-    @Override
-    public void load(@NonNull File file) throws Exception {
-        super.load(file);
-        if (this.cookingSource == null || this.result == null || !this.type.equals(RecipeType.SMOKER_RECIPE)) {
-            throw new WrongRecipeTypeException(file.getAbsolutePath());
-        }
+    public boolean isIncorrectType() {
+        return isIncorrectType(RecipeType.SMOKER);
     }
 }

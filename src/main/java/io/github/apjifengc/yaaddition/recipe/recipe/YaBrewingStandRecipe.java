@@ -16,37 +16,33 @@ import io.github.apjifengc.yaaddition.recipe.excption.RecipeException;
 import io.github.apjifengc.yaaddition.recipe.util.RecipeType;
 
 /**
- * 锻造配方
+ * 酿造配方
  */
-public class YaSmithingTableRecipe extends YaRecipe {
+public class YaBrewingStandRecipe extends YaRecipe {
 
     @Getter
     @Setter
-    private ItemStack smithingBase;
+    private ItemStack ingredient;
     @Getter
     @Setter
-    private ItemStack smithingAddition;
+    private ItemStack potion;
 
     /**
-     * 新建空的锻造配方
+     * 新建空的酿造配方
      */
-    public YaSmithingTableRecipe() {
-        this.type = RecipeType.SMITHING_TABLE;
+    public YaBrewingStandRecipe() {
+        this.type = RecipeType.BREWING_STAND;
     }
 
     /**
-     * 新建锻造配方
-     *
-     * @param smithingBase     基础物品
-     * @param smithingAddition 附加物品
-     * @param smithingResult   产品
+     * 新建酿造配方
      */
-    public YaSmithingTableRecipe(@NonNull ItemStack smithingBase, @NonNull ItemStack smithingAddition,
-            @NonNull ItemStack smithingResult) {
-        this.smithingBase = smithingBase;
-        this.smithingAddition = smithingAddition;
-        this.result = smithingResult;
-        this.type = RecipeType.SMITHING_TABLE;
+    public YaBrewingStandRecipe(@NonNull ItemStack ingredient, @NonNull ItemStack potion,
+            @NonNull ItemStack brewingResult) {
+        this.ingredient = ingredient;
+        this.potion = potion;
+        this.result = brewingResult;
+        this.type = RecipeType.BREWING_STAND;
         namespacedKeyGen(this.result, this.type);
     }
 
@@ -56,8 +52,8 @@ public class YaSmithingTableRecipe extends YaRecipe {
         HashMap<String, Object> map = new HashMap<>();
         map.put("type", this.type);
         map.put("result", this.result);
-        map.put("smithingBase", this.smithingBase);
-        map.put("smithingAddition", this.smithingAddition);
+        map.put("ingredient", this.ingredient);
+        map.put("potion", this.potion);
         save(map);
     }
 
@@ -73,8 +69,8 @@ public class YaSmithingTableRecipe extends YaRecipe {
             if (readMap instanceof HashMap) {
                 map.putAll((HashMap) readMap);
                 setResult((ItemStack) map.get("result"));
-                this.smithingBase = (ItemStack) map.get("smithingBase");
-                this.smithingAddition = (ItemStack) map.get("smithingAddition");
+                this.ingredient = (ItemStack) map.get("ingredient");
+                this.potion = (ItemStack) map.get("potion");
                 this.type = (RecipeType) map.get("type");
             }
         }
@@ -83,11 +79,11 @@ public class YaSmithingTableRecipe extends YaRecipe {
 
     @Override
     public boolean isIncomplete() {
-        return this.smithingBase == null || this.smithingAddition == null || this.result == null;
+        return this.ingredient == null || this.potion == null || this.result == null;
     }
 
     @Override
     public boolean isIncorrectType() {
-        return isIncorrectType(RecipeType.SMITHING_TABLE);
+        return isIncorrectType(RecipeType.BREWING_STAND);
     }
 }

@@ -1,10 +1,6 @@
 
 package io.github.apjifengc.yaaddition.recipe.recipe;
 
-import java.io.File;
-
-import io.github.apjifengc.yaaddition.recipe.excption.IncompleteRecipeException;
-import io.github.apjifengc.yaaddition.recipe.excption.WrongRecipeTypeException;
 import io.github.apjifengc.yaaddition.recipe.util.RecipeType;
 
 import org.bukkit.inventory.ItemStack;
@@ -19,7 +15,7 @@ public class YaBlastFurnaceRecipe extends YaCookingRecipe {
      * 新建空的高炉配方
      */
     public YaBlastFurnaceRecipe() {
-        super(RecipeType.BLAST_FURNACE_RECIPE);
+        super(RecipeType.BLAST_FURNACE);
     }
 
     /**
@@ -32,47 +28,24 @@ public class YaBlastFurnaceRecipe extends YaCookingRecipe {
      */
     public YaBlastFurnaceRecipe(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult,
             float cookingExperience, int cookingTime) {
-        super(cookingSource, cookingResult, cookingExperience, cookingTime, RecipeType.BLAST_FURNACE_RECIPE);
+        super(cookingSource, cookingResult, cookingExperience, cookingTime, RecipeType.BLAST_FURNACE);
     }
 
     public YaBlastFurnaceRecipe(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult,
             float cookingExperience) {
-        super(cookingSource, cookingResult, cookingExperience, 100, RecipeType.BLAST_FURNACE_RECIPE);
+        super(cookingSource, cookingResult, cookingExperience, 100, RecipeType.BLAST_FURNACE);
     }
 
     public YaBlastFurnaceRecipe(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult, int cookingTime) {
-        super(cookingSource, cookingResult, 0, cookingTime, RecipeType.BLAST_FURNACE_RECIPE);
+        super(cookingSource, cookingResult, 0, cookingTime, RecipeType.BLAST_FURNACE);
     }
 
     public YaBlastFurnaceRecipe(@NonNull ItemStack cookingResult, @NonNull ItemStack cookingSource) {
-        super(cookingSource, cookingResult, 0, 100, RecipeType.BLAST_FURNACE_RECIPE);
+        super(cookingSource, cookingResult, 0, 100, RecipeType.BLAST_FURNACE);
     }
 
-    /**
-     * 从文件名加载配方，路径为{@link RecipeType#getPath()}
-     * 
-     * @param fileName 配方文件名
-     */
     @Override
-    public void load(@NonNull String fileName) throws Exception {
-        super.load(fileName);
-        if (this.cookingSource == null || this.result == null || !this.type.equals(RecipeType.BLAST_FURNACE_RECIPE)) {
-            throw new WrongRecipeTypeException(fileName);
-        }
-    }
-
-    /**
-     * 从文件加载配方
-     * 
-     * @param file 配方文件
-     */
-    @Override
-    public void load(@NonNull File file) throws Exception {
-        super.load(file);
-        if (!this.type.equals(RecipeType.BLAST_FURNACE_RECIPE)) {
-            throw new WrongRecipeTypeException(file.getAbsolutePath());
-        } else if (super.isIncomplete()) {
-            throw new IncompleteRecipeException(file.getAbsolutePath());
-        }
+    public boolean isIncorrectType() {
+        return isIncorrectType(RecipeType.BLAST_FURNACE);
     }
 }
