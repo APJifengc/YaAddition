@@ -1,0 +1,4 @@
+resource-pack:
+  remote-server: 'ftp://yallage.nanokylin.com/'
+  file-location: 'http://yallage.nanokylin.com:1168/resourcepacks/'
+  enable-md5: true

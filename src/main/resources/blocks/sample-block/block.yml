@@ -1,0 +1,5 @@
+id: sample_block
+model: block/cube_all
+textures:
+  all: custom/sample_block/ruby_block
+type: stone
