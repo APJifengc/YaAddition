@@ -1,3 +1,4 @@
+
 package io.github.apjifengc.yaaddition.recipe.recipe;
 
 import java.io.File;
@@ -10,6 +11,9 @@ import org.bukkit.inventory.ItemStack;
 
 import lombok.NonNull;
 
+/**
+ * 高炉配方
+ */
 public class YaBlastFurnaceRecipe extends YaCookingRecipe {
     /**
      * 新建空的高炉配方
@@ -26,22 +30,22 @@ public class YaBlastFurnaceRecipe extends YaCookingRecipe {
      * @param cookingExperience 经验
      * @param cookingTime       熔炼时间
      */
-    public YaBlastFurnaceRecipe(@NonNull ItemStack cookingResult, @NonNull ItemStack cookingSource,
+    public YaBlastFurnaceRecipe(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult,
             float cookingExperience, int cookingTime) {
-        super(cookingResult, cookingSource, cookingExperience, cookingTime, RecipeType.BLAST_FURNACE_RECIPE);
+        super(cookingSource, cookingResult, cookingExperience, cookingTime, RecipeType.BLAST_FURNACE_RECIPE);
     }
 
-    public YaBlastFurnaceRecipe(@NonNull ItemStack cookingResult, @NonNull ItemStack cookingSource,
+    public YaBlastFurnaceRecipe(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult,
             float cookingExperience) {
-        super(cookingResult, cookingSource, cookingExperience, 100, RecipeType.BLAST_FURNACE_RECIPE);
+        super(cookingSource, cookingResult, cookingExperience, 100, RecipeType.BLAST_FURNACE_RECIPE);
     }
 
-    public YaBlastFurnaceRecipe(@NonNull ItemStack cookingResult, @NonNull ItemStack cookingSource, int cookingTime) {
-        super(cookingResult, cookingSource, 0, cookingTime, RecipeType.BLAST_FURNACE_RECIPE);
+    public YaBlastFurnaceRecipe(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult, int cookingTime) {
+        super(cookingSource, cookingResult, 0, cookingTime, RecipeType.BLAST_FURNACE_RECIPE);
     }
 
     public YaBlastFurnaceRecipe(@NonNull ItemStack cookingResult, @NonNull ItemStack cookingSource) {
-        super(cookingResult, cookingSource, 0, 100, RecipeType.BLAST_FURNACE_RECIPE);
+        super(cookingSource, cookingResult, 0, 100, RecipeType.BLAST_FURNACE_RECIPE);
     }
 
     /**

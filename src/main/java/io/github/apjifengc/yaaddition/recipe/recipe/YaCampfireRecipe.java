@@ -1,3 +1,4 @@
+
 package io.github.apjifengc.yaaddition.recipe.recipe;
 
 import java.io.File;
@@ -10,6 +11,9 @@ import org.bukkit.inventory.ItemStack;
 
 import lombok.NonNull;
 
+/**
+ * 篝火配方
+ */
 public class YaCampfireRecipe extends YaCookingRecipe {
     /**
      * 新建空的篝火配方
@@ -26,22 +30,22 @@ public class YaCampfireRecipe extends YaCookingRecipe {
      * @param cookingExperience 经验
      * @param cookingTime       烹饪时间
      */
-    public YaCampfireRecipe(@NonNull ItemStack cookingResult, @NonNull ItemStack cookingSource, float cookingExperience,
+    public YaCampfireRecipe(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult, float cookingExperience,
             int cookingTime) {
-        super(cookingResult, cookingSource, cookingExperience, cookingTime, RecipeType.CAMPFIRE_RECIPE);
+        super(cookingSource, cookingResult, cookingExperience, cookingTime, RecipeType.CAMPFIRE_RECIPE);
     }
 
-    public YaCampfireRecipe(@NonNull ItemStack cookingResult, @NonNull ItemStack cookingSource,
+    public YaCampfireRecipe(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult,
             float cookingExperience) {
-        super(cookingResult, cookingSource, cookingExperience, 200, RecipeType.CAMPFIRE_RECIPE);
+        super(cookingSource, cookingResult, cookingExperience, 200, RecipeType.CAMPFIRE_RECIPE);
     }
 
-    public YaCampfireRecipe(@NonNull ItemStack cookingResult, @NonNull ItemStack cookingSource, int cookingTime) {
-        super(cookingResult, cookingSource, 0, cookingTime, RecipeType.CAMPFIRE_RECIPE);
+    public YaCampfireRecipe(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult, int cookingTime) {
+        super(cookingSource, cookingResult, 0, cookingTime, RecipeType.CAMPFIRE_RECIPE);
     }
 
     public YaCampfireRecipe(@NonNull ItemStack cookingResult, @NonNull ItemStack cookingSource) {
-        super(cookingResult, cookingSource, 0, 200, RecipeType.CAMPFIRE_RECIPE);
+        super(cookingSource, cookingResult, 0, 200, RecipeType.CAMPFIRE_RECIPE);
     }
 
     /**

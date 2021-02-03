@@ -10,6 +10,9 @@ import org.bukkit.inventory.ItemStack;
 
 import lombok.NonNull;
 
+/**
+ * 有序合成
+ */
 public class YaShapedCraftRecipe extends YaCraftingRecipe {
     /**
      * 新建空的有序合成

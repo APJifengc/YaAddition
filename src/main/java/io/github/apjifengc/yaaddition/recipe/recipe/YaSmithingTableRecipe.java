@@ -16,6 +16,9 @@ import io.github.apjifengc.yaaddition.recipe.excption.IncompleteRecipeException;
 import io.github.apjifengc.yaaddition.recipe.excption.WrongRecipeTypeException;
 import io.github.apjifengc.yaaddition.recipe.util.RecipeType;
 
+/**
+ * 锻造台配方
+ */
 public class YaSmithingTableRecipe extends YaRecipe {
 
     @Getter
@@ -35,9 +38,9 @@ public class YaSmithingTableRecipe extends YaRecipe {
     /**
      * 新建锻造配方
      *
-     * @param smithingBase 基础物品
+     * @param smithingBase     基础物品
      * @param smithingAddition 附加物品
-     * @param smithingResult 产品
+     * @param smithingResult   产品
      */
     public YaSmithingTableRecipe(@NonNull ItemStack smithingBase, @NonNull ItemStack smithingAddition,
             @NonNull ItemStack smithingResult) {

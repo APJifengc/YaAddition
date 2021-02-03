@@ -15,6 +15,9 @@ import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 
+/**
+ * 所有配方的父类
+ */
 public class YaRecipe {
 
     @Getter
@@ -39,15 +42,15 @@ public class YaRecipe {
     protected void save(Map<String, Object> map) throws IOException {
         String filePath = this.type.getPath() + this.namespacedKey + ".recipe";
         File file = new File(filePath);
-            if (file.exists()) {
-                throw new FileAlreadyExistsException(filePath);
-            } else {
-                file.mkdirs();
+        if (file.exists()) {
+            throw new FileAlreadyExistsException(filePath);
+        } else {
+            file.mkdirs();
 
-                try (BukkitObjectOutputStream oos = new BukkitObjectOutputStream(new FileOutputStream(file));) {
-                    oos.writeObject(map);
-                }
+            try (BukkitObjectOutputStream oos = new BukkitObjectOutputStream(new FileOutputStream(file));) {
+                oos.writeObject(map);
             }
+        }
     }
 
     /**

@@ -9,6 +9,9 @@ import org.bukkit.inventory.ItemStack;
 
 import lombok.NonNull;
 
+/**
+ * 烟熏炉配方
+ */
 public class YaSmokerRecipe extends YaCookingRecipe {
     /**
      * 新建空的烟熏炉配方
@@ -25,16 +28,16 @@ public class YaSmokerRecipe extends YaCookingRecipe {
      * @param cookingExperience 经验
      * @param cookingTime       烹饪时间
      */
-    public YaSmokerRecipe(@NonNull ItemStack cookingResult, @NonNull ItemStack cookingSource, float cookingExperience,
+    public YaSmokerRecipe(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult, float cookingExperience,
             int cookingTime) {
         super(cookingResult, cookingSource, cookingExperience, cookingTime, RecipeType.SMOKER_RECIPE);
     }
 
-    public YaSmokerRecipe(@NonNull ItemStack cookingResult, @NonNull ItemStack cookingSource, float cookingExperience) {
+    public YaSmokerRecipe(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult, float cookingExperience) {
         super(cookingResult, cookingSource, cookingExperience, 100, RecipeType.SMOKER_RECIPE);
     }
 
-    public YaSmokerRecipe(@NonNull ItemStack cookingResult, @NonNull ItemStack cookingSource, int cookingTime) {
+    public YaSmokerRecipe(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult, int cookingTime) {
         super(cookingResult, cookingSource, 0, cookingTime, RecipeType.SMOKER_RECIPE);
     }
 

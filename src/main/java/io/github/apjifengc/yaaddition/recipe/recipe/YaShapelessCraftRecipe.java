@@ -10,6 +10,9 @@ import org.bukkit.inventory.ItemStack;
 
 import lombok.NonNull;
 
+/**
+ * 无序合成
+ */
 public class YaShapelessCraftRecipe extends YaCraftingRecipe {
 
     /**

@@ -14,6 +14,9 @@ import java.util.HashMap;
 
 import io.github.apjifengc.yaaddition.recipe.util.RecipeType;
 
+/**
+ * 有序和无序合成配方的父类
+ */
 public class YaCraftingRecipe extends YaRecipe {
 
     @Getter

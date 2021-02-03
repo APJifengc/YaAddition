@@ -2,7 +2,6 @@ package io.github.apjifengc.yaaddition.recipe.recipe;
 
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.io.BukkitObjectInputStream;
-import org.bukkit.util.io.BukkitObjectOutputStream;
 
 import lombok.Getter;
 import lombok.NonNull;
@@ -10,15 +9,16 @@ import lombok.Setter;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.FileAlreadyExistsException;
 import java.util.HashMap;
 
 import io.github.apjifengc.yaaddition.recipe.excption.IncompleteRecipeException;
 import io.github.apjifengc.yaaddition.recipe.excption.WrongRecipeTypeException;
 import io.github.apjifengc.yaaddition.recipe.util.RecipeType;
 
+/**
+ * 切石机配方
+ */
 public class YaStoneCutterRecipe extends YaRecipe {
 
     @Getter

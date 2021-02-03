@@ -14,6 +14,9 @@ import java.util.HashMap;
 
 import io.github.apjifengc.yaaddition.recipe.util.RecipeType;
 
+/**
+ * 所有烧制配方的父类
+ */
 public class YaCookingRecipe extends YaRecipe {
 
     @Getter
@@ -30,7 +33,7 @@ public class YaCookingRecipe extends YaRecipe {
         this.type = type;
     }
 
-    protected YaCookingRecipe(ItemStack cookingResult, ItemStack cookingSource, float cookingExperience,
+    protected YaCookingRecipe(ItemStack cookingSource, ItemStack cookingResult, float cookingExperience,
             int cookingTime, RecipeType type) {
         this.cookingSource = cookingSource;
         setResult(cookingResult);
