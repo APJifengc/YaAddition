@@ -1,6 +1,7 @@
 package io.github.apjifengc.yaaddition.core;
 
 import io.github.apjifengc.yaaddition.YaAddition;
+import io.github.apjifengc.yaaddition.addition.AdditionMaterial;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -12,6 +13,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPhysicsEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.List;
@@ -34,25 +36,39 @@ public class SpecialTripWire implements Listener {
     @EventHandler
     void onPlace(BlockPlaceEvent event) {
         if (event.getBlock().getType() == Material.TRIPWIRE) {
-            faceTripWire(event.getBlock());
+            correctTripWire(event.getBlock());
         }
     }
 
     @EventHandler
     void onBreak(BlockBreakEvent event) {
         if (event.getBlock().getType() == Material.TRIPWIRE) {
-            faceTripWire(event.getBlock());
+            correctTripWire(event.getBlock());
         }
     }
 
     @EventHandler
     void onBlockPhysics(BlockPhysicsEvent event) {
         if (event.getBlock().getType() == Material.TRIPWIRE) {
-            faceTripWire(event.getBlock());
+            String id = (String) BlockStorage.get(event.getBlock().getLocation(), "id");
+            if (id == null) {
+                correctTripWire(event.getBlock());
+            } else {
+                AdditionMaterial.byId(id).state.setData(event.getBlock());
+            }
+            event.setCancelled(true);
         }
     }
 
-    void faceTripWire(Block block) {
+    @EventHandler
+    void onPlayerMove(PlayerMoveEvent event) {
+        if (event.getPlayer().getLocation().getBlock().getType() == Material.TRIPWIRE) {
+            Tripwire tripwire = ((Tripwire)event.getPlayer().getLocation().getBlock().getBlockData());
+            event.getPlayer().sendMessage(tripwire.isPowered() ? "yes" : "no");
+        }
+    }
+
+    void correctTripWire(Block block) {
         Location location = block.getLocation();
         Tripwire tripwire = (Tripwire) block.getBlockData();
         Set<BlockFace> faces = tripwire.getFaces();
@@ -60,12 +76,12 @@ public class SpecialTripWire implements Listener {
         if (faces.contains(BlockFace.NORTH)) tripwire.setFace(BlockFace.SOUTH, true);
         if (faces.contains(BlockFace.EAST)) tripwire.setFace(BlockFace.WEST, true);
         if (faces.contains(BlockFace.WEST)) tripwire.setFace(BlockFace.EAST, true);
-        tripwire.setPowered(false);
         tripwire.setDisarmed(false);
         tripwire.setAttached(false);
-        Bukkit.getOnlinePlayers().forEach(player -> {
+        block.setBlockData(tripwire);
+        /*Bukkit.getOnlinePlayers().forEach(player -> {
             player.sendBlockChange(location, tripwire);
-        });
+        });*/
     }
     /*public void entityInside(BlockState blockState, Level world, BlockPos location, Entity entity) {
         if (world.isClientSide)
