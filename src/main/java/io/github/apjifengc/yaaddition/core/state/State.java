@@ -1,8 +1,8 @@
 package io.github.apjifengc.yaaddition.core.state;
 
-import io.github.apjifengc.yaaddition.addition.AdditionMaterial;
+import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.block.Block;
-import org.bukkit.block.data.type.Tripwire;
 
 /**
  * Block's state.
@@ -11,7 +11,7 @@ import org.bukkit.block.data.type.Tripwire;
  */
 public class State {
     static int currentID = 0;
-    int id;
+    @Getter @Setter int id;
 
     public State(int id) {
         this.setId(id);
@@ -19,15 +19,6 @@ public class State {
 
     public State() {
         this.setId(nextId());
-    }
-
-    /**
-     * Set the custom block's ID.
-     *
-     * @param id The id.
-     */
-    public void setId(int id) {
-        this.id = id;
     }
 
     /**

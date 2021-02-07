@@ -54,7 +54,7 @@ public class SpecialTripWire implements Listener {
             if (id == null) {
                 correctTripWire(event.getBlock());
             } else {
-                AdditionMaterial.byId(id).state.setData(event.getBlock());
+                AdditionMaterial.byId(id).getState().setData(event.getBlock());
             }
             event.setCancelled(true);
         }
