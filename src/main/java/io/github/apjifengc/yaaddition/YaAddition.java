@@ -9,6 +9,8 @@ import io.github.apjifengc.yaaddition.core.state.TripWireState;
 import io.github.apjifengc.yaaddition.exception.MaterialAlreadyRegisteredException;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.Collections;
+
 public final class YaAddition extends JavaPlugin {
     static YaAddition instance;
 
@@ -25,7 +27,7 @@ public final class YaAddition extends JavaPlugin {
         new SpecialNoteBlock(this);
         new SpecialTripWire(this);
         new CommandDebug().register();
-        AdditionMaterial test = new AdditionMaterial(AdditionMaterial.AdditionMaterialType.ITEM, "TEST_ITEM", null, null, null);
+        AdditionMaterial test = new AdditionMaterial(AdditionMaterial.AdditionMaterialType.ITEM, "TEST_ITEM", null, "test", Collections.singletonList("YAY"));
         try {
             test.register();
         } catch (MaterialAlreadyRegisteredException e) {

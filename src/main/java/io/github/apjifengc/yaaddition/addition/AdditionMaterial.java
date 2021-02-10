@@ -1,6 +1,5 @@
 package io.github.apjifengc.yaaddition.addition;
 
-import com.rabbitown.yalib.module.locale.LocaleString;
 import io.github.apjifengc.yaaddition.core.state.ItemState;
 import io.github.apjifengc.yaaddition.core.state.NoteBlockState;
 import io.github.apjifengc.yaaddition.core.state.State;
@@ -12,6 +11,7 @@ import lombok.Getter;
 import org.bukkit.Material;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class AdditionMaterial {
@@ -22,10 +22,10 @@ public class AdditionMaterial {
     @Getter private final String identifier;
     @Getter private final Model model;
     @Getter private final Map<String, Texture> textures;
-    @Getter private final LocaleString name;
-    @Getter private final LocaleString lore;
+    @Getter private final String name;
+    @Getter private final List<String> lore;
 
-    public AdditionMaterial(AdditionMaterialType type, String identifier, Model model, LocaleString name, LocaleString lore) {
+    public AdditionMaterial(AdditionMaterialType type, String identifier, Model model, String name, List<String> lore) {
         this.type = type;
         this.identifier = identifier;
         this.baseMaterial = type.baseMaterial;
@@ -48,7 +48,7 @@ public class AdditionMaterial {
         }
     }
 
-    public AdditionMaterial(AdditionMaterialType type, String identifier, Model model, Map<String, Texture> textures, LocaleString name, LocaleString lore) {
+    public AdditionMaterial(AdditionMaterialType type, String identifier, Model model, Map<String, Texture> textures, String name, List<String> lore) {
         this.type = type;
         this.identifier = identifier;
         this.baseMaterial = type.baseMaterial;

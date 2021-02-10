@@ -7,6 +7,7 @@ import io.github.apjifengc.yaaddition.YaAddition;
 import io.github.apjifengc.yaaddition.addition.AdditionItemStack;
 import io.github.apjifengc.yaaddition.addition.AdditionMaterial;
 import io.github.apjifengc.yaaddition.core.state.TripWireState;
+import io.github.apjifengc.yaaddition.util.Data;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -29,14 +30,13 @@ public class CommandDebug extends SimpleCommandRemote {
     @Parameter(params = {"sender"})
     @Access(sender = {CommandSenderType.PLAYER})
     public void testItem(Player sender) {
-        sender.getInventory().addItem(new AdditionItemStack("TEST_ITEM"));
-    }
-
-    @Action(action = "testIsItem")
-    @Parameter(params = {"sender"})
-    @Access(sender = {CommandSenderType.PLAYER})
-    public void testIsItem(Player sender) {
-        sender.sendMessage(sender.getInventory().getItemInMainHand() instanceof AdditionItemStack ?
-                "This is a addition item." : "This is note a addition item.");
+        AdditionItemStack itemStack = new AdditionItemStack("TEST_ITEM");
+        Data data = itemStack.getData();
+        data.set("test", "test", 0, "t");
+        data.set(false, "test", 0, "x");
+        System.out.println(data.get("test", 0));
+        System.out.println(data.getString("test", 0, "t"));
+        System.out.println(data);
+        sender.getInventory().addItem(itemStack.asBukkitCopy());
     }
 }
