@@ -8,6 +8,7 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.type.Tripwire;
+import org.bukkit.block.data.type.TripwireHook;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -36,14 +37,28 @@ public class SpecialTripWire implements Listener {
     @EventHandler
     void onPlace(BlockPlaceEvent event) {
         if (event.getBlock().getType() == Material.TRIPWIRE) {
-            correctTripWire(event.getBlock());
+            correctTripWire(event.getBlock(), true);
+        }
+        if (event.getBlock().getType() == Material.TRIPWIRE_HOOK) {
+            TripwireHook hook = (TripwireHook) event.getBlock().getBlockData();
+            Block tripwire = event.getBlock().getRelative(hook.getFacing());
+            if (tripwire.getType() == Material.TRIPWIRE) {
+                correctTripWire(tripwire, false);
+            }
         }
     }
 
     @EventHandler
     void onBreak(BlockBreakEvent event) {
         if (event.getBlock().getType() == Material.TRIPWIRE) {
-            correctTripWire(event.getBlock());
+            correctTripWire(event.getBlock(), true);
+        }
+        if (event.getBlock().getType() == Material.TRIPWIRE_HOOK) {
+            TripwireHook hook = (TripwireHook) event.getBlock().getBlockData();
+            Block tripwire = event.getBlock().getRelative(hook.getFacing());
+            if (tripwire.getType() == Material.TRIPWIRE) {
+                correctTripWire(tripwire, false);
+            }
         }
     }
 
@@ -52,7 +67,7 @@ public class SpecialTripWire implements Listener {
         if (event.getBlock().getType() == Material.TRIPWIRE) {
             String id = (String) BlockStorage.get(event.getBlock().getLocation(), "id");
             if (id == null) {
-                correctTripWire(event.getBlock());
+                correctTripWire(event.getBlock(), true);
             } else {
                 AdditionMaterial.byId(id).getState().setData(event.getBlock());
             }
@@ -68,14 +83,38 @@ public class SpecialTripWire implements Listener {
         }
     }
 
-    void correctTripWire(Block block) {
-        Location location = block.getLocation();
+    void correctTripWire(Block block, boolean update) {
         Tripwire tripwire = (Tripwire) block.getBlockData();
-        Set<BlockFace> faces = tripwire.getFaces();
-        if (faces.contains(BlockFace.SOUTH)) tripwire.setFace(BlockFace.NORTH, true);
-        if (faces.contains(BlockFace.NORTH)) tripwire.setFace(BlockFace.SOUTH, true);
-        if (faces.contains(BlockFace.EAST)) tripwire.setFace(BlockFace.WEST, true);
-        if (faces.contains(BlockFace.WEST)) tripwire.setFace(BlockFace.EAST, true);
+        if (block.getRelative(BlockFace.NORTH).getType() == Material.TRIPWIRE ||
+                block.getRelative(BlockFace.NORTH).getType() == Material.TRIPWIRE_HOOK ||
+                block.getRelative(BlockFace.SOUTH).getType() == Material.TRIPWIRE ||
+                block.getRelative(BlockFace.SOUTH).getType() == Material.TRIPWIRE_HOOK) {
+            tripwire.setFace(BlockFace.NORTH, true);
+            tripwire.setFace(BlockFace.SOUTH, true);
+        } else {
+            tripwire.setFace(BlockFace.NORTH, false);
+            tripwire.setFace(BlockFace.SOUTH, false);
+        }
+        if (block.getRelative(BlockFace.EAST).getType() == Material.TRIPWIRE ||
+                block.getRelative(BlockFace.EAST).getType() == Material.TRIPWIRE_HOOK ||
+                block.getRelative(BlockFace.WEST).getType() == Material.TRIPWIRE ||
+                block.getRelative(BlockFace.WEST).getType() == Material.TRIPWIRE_HOOK) {
+            tripwire.setFace(BlockFace.EAST, true);
+            tripwire.setFace(BlockFace.WEST, true);
+        } else {
+            tripwire.setFace(BlockFace.NORTH, false);
+            tripwire.setFace(BlockFace.SOUTH, false);
+        }
+        if (update) {
+            if (block.getRelative(BlockFace.NORTH).getType() == Material.TRIPWIRE)
+                correctTripWire(block.getRelative(BlockFace.NORTH), false);
+            if (block.getRelative(BlockFace.SOUTH).getType() == Material.TRIPWIRE)
+                correctTripWire(block.getRelative(BlockFace.SOUTH), false);
+            if (block.getRelative(BlockFace.EAST).getType() == Material.TRIPWIRE)
+                correctTripWire(block.getRelative(BlockFace.EAST), false);
+            if (block.getRelative(BlockFace.WEST).getType() == Material.TRIPWIRE)
+                correctTripWire(block.getRelative(BlockFace.WEST), false);
+        }
         tripwire.setDisarmed(false);
         tripwire.setAttached(false);
         block.setBlockData(tripwire);
