@@ -14,8 +14,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.Map;
 
 public class AdditionItemStack {
-    private final AdditionMaterial material;
-    private final int amount;
+    @Getter private final AdditionMaterial material;
+    @Getter private final int amount;
     @Getter private final Data data;
     private final ItemStack itemStack;
 
@@ -91,5 +91,9 @@ public class AdditionItemStack {
         return NBTEditor.set(
                 NBTEditor.set(itemStack.itemStack, itemStack.data.toString(), "addition", "data"),
                 itemStack.material.getIdentifier(), "addition", "id");
+    }
+
+    public static boolean isAddition(ItemStack itemStack) {
+        return NBTEditor.contains(itemStack, "addition");
     }
 }

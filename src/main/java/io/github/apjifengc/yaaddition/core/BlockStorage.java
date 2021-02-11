@@ -55,6 +55,11 @@ public class BlockStorage {
     public static Object get(Location location, String path) {
         return getOrCreate(location).get(path);
     }
+
+    public static boolean contains(Location location, String path) {
+        return getOrCreate(location).contains(path);
+    }
+
     public static void clear(Location location) {
         File file = getFile(location);
         if (file.exists()) {

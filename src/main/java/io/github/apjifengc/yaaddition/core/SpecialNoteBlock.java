@@ -1,13 +1,17 @@
 package io.github.apjifengc.yaaddition.core;
 
 import io.github.apjifengc.yaaddition.YaAddition;
+import io.github.apjifengc.yaaddition.addition.AdditionBlock;
+import io.github.apjifengc.yaaddition.addition.AdditionMaterial;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.type.NoteBlock;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPhysicsEvent;
 import org.bukkit.event.block.NotePlayEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
@@ -57,7 +61,7 @@ public class SpecialNoteBlock implements Listener {
         }
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.NORMAL)
     void onBreak(BlockBreakEvent event) {
         BlockStorage.clear(event.getBlock().getLocation());
     }
@@ -66,6 +70,14 @@ public class SpecialNoteBlock implements Listener {
     void onNote(NotePlayEvent event) {
         if (((NoteBlock) event.getBlock().getBlockData()).getNote().getId() == 0) playNote(event.getBlock());
         event.setCancelled(true);
+    }
+
+    @EventHandler
+    void onBlockPhysics(BlockPhysicsEvent event) {
+        if (event.getBlock().getType() == Material.NOTE_BLOCK && AdditionBlock.isAddition(event.getBlock())) {
+            AdditionBlock.asAdditionCopy(event.getBlock()).getMaterial().getState().setData(event.getBlock());
+            event.setCancelled(true);
+        }
     }
 
     static public int getNote(Location location) {

@@ -9,6 +9,7 @@ import io.github.apjifengc.yaresourcepackmanager.component.Model;
 import io.github.apjifengc.yaresourcepackmanager.component.Texture;
 import lombok.Getter;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 
 import java.util.HashMap;
 import java.util.List;

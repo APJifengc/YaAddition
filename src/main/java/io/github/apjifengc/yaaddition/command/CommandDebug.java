@@ -26,17 +26,11 @@ public class CommandDebug extends SimpleCommandRemote {
         new TripWireState(id).setData(sender.getLocation().getBlock());
     }
 
-    @Action(action = "testItem")
-    @Parameter(params = {"sender"})
+    @Action(action = "testItem {id}")
+    @Parameter(params = {"sender", "id"})
     @Access(sender = {CommandSenderType.PLAYER})
-    public void testItem(Player sender) {
-        AdditionItemStack itemStack = new AdditionItemStack("TEST_ITEM");
-        Data data = itemStack.getData();
-        data.set("test", "test", 0, "t");
-        data.set(false, "test", 0, "x");
-        System.out.println(data.get("test", 0));
-        System.out.println(data.getString("test", 0, "t"));
-        System.out.println(data);
+    public void testItem(Player sender, String id) {
+        AdditionItemStack itemStack = new AdditionItemStack(id);
         sender.getInventory().addItem(itemStack.asBukkitCopy());
     }
 }

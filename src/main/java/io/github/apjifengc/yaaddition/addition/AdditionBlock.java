@@ -1,5 +1,7 @@
 package io.github.apjifengc.yaaddition.addition;
 
+import io.github.apjifengc.yaaddition.core.BlockStorage;
+import io.github.apjifengc.yaaddition.util.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.*;
@@ -16,23 +18,55 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @SuppressWarnings("unused")
 public class AdditionBlock {
+    private static final Map<Location, AdditionBlock> loadedBlocks = new HashMap<>();
     @Getter @Setter private AdditionMaterial material;
     @Getter private final Block block;
+    @Getter private final Data additionData;
 
-    public AdditionBlock(AdditionMaterial material, Block block) {
+    public AdditionBlock(AdditionMaterial material, Block block, Data data) {
         this.material = material;
         this.block = block;
+        this.additionData = data;
+        loadedBlocks.put(block.getLocation(), this);
+    }
+
+    public AdditionBlock(AdditionMaterial material, Block block) {
+        this(material, block, new Data());
+    }
+
+    public AdditionBlock(AdditionMaterial material, Block block, String data) {
+        this(material, block, new Data(data));
     }
 
     public static AdditionBlock asAdditionCopy(Block block) {
-        AdditionMaterial material = null;
-        // TODO Get the material
+        if (loadedBlocks.containsKey(block.getLocation())) return loadedBlocks.get(block.getLocation());
+        AdditionMaterial material = AdditionMaterial.byId(BlockStorage.get(block.getLocation(), "id").toString());
+        Data data = new Data(BlockStorage.get(block.getLocation(), "data").toString());
+        return new AdditionBlock(material, block, data);
+    }
 
-        return new AdditionBlock(material, block);
+    public Block asBukkitCopy() {
+        return AdditionBlock.asBukkitCopy(this);
+    }
+
+    public static Block asBukkitCopy(AdditionBlock block) {
+        return block.getBlock();
+    }
+
+    public static boolean isAddition(Block block) {
+        return BlockStorage.contains(block.getLocation(), "id");
+    }
+
+    public void setAdditionData() {
+        material.getState().setData(block);
+        BlockStorage.set(block.getLocation(), "id", material.getIdentifier());
+        BlockStorage.set(block.getLocation(), "data", additionData.toString());
     }
 
     //<editor-fold desc="Original Block Methods">
