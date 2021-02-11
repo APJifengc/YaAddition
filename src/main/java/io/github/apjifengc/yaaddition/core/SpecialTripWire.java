@@ -77,7 +77,6 @@ public class SpecialTripWire implements Listener {
     }
 
     void correctTripWire(Block block, boolean update) {
-        Bukkit.broadcastMessage(block.getLocation().toString());
         Tripwire tripwire = (Tripwire) block.getBlockData();
         if (block.getRelative(BlockFace.NORTH).getType() == Material.TRIPWIRE ||
                 block.getRelative(BlockFace.NORTH).getType() == Material.TRIPWIRE_HOOK ||
