@@ -34,7 +34,7 @@ public class SpecialTripWire implements Listener {
         }.runTaskTimer(plugin, 0, 1);
     }
 
-    @EventHandler
+    /*@EventHandler
     void onPlace(BlockPlaceEvent event) {
         if (event.getBlock().getType() == Material.TRIPWIRE) {
             correctTripWire(event.getBlock(), true);
@@ -60,11 +60,12 @@ public class SpecialTripWire implements Listener {
                 correctTripWire(tripwire, false);
             }
         }
-    }
+    }*/
 
     @EventHandler
     void onBlockPhysics(BlockPhysicsEvent event) {
         if (event.getBlock().getType() == Material.TRIPWIRE) {
+
             String id = (String) BlockStorage.get(event.getBlock().getLocation(), "id");
             if (id == null) {
                 correctTripWire(event.getBlock(), true);
@@ -75,15 +76,8 @@ public class SpecialTripWire implements Listener {
         }
     }
 
-    @EventHandler
-    void onPlayerMove(PlayerMoveEvent event) {
-        if (event.getPlayer().getLocation().getBlock().getType() == Material.TRIPWIRE) {
-            Tripwire tripwire = ((Tripwire)event.getPlayer().getLocation().getBlock().getBlockData());
-            event.getPlayer().sendMessage(tripwire.isPowered() ? "yes" : "no");
-        }
-    }
-
     void correctTripWire(Block block, boolean update) {
+        Bukkit.broadcastMessage(block.getLocation().toString());
         Tripwire tripwire = (Tripwire) block.getBlockData();
         if (block.getRelative(BlockFace.NORTH).getType() == Material.TRIPWIRE ||
                 block.getRelative(BlockFace.NORTH).getType() == Material.TRIPWIRE_HOOK ||
@@ -102,8 +96,8 @@ public class SpecialTripWire implements Listener {
             tripwire.setFace(BlockFace.EAST, true);
             tripwire.setFace(BlockFace.WEST, true);
         } else {
-            tripwire.setFace(BlockFace.NORTH, false);
-            tripwire.setFace(BlockFace.SOUTH, false);
+            tripwire.setFace(BlockFace.EAST, false);
+            tripwire.setFace(BlockFace.WEST, false);
         }
         if (update) {
             if (block.getRelative(BlockFace.NORTH).getType() == Material.TRIPWIRE)
