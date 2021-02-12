@@ -7,16 +7,18 @@ import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.type.NoteBlock;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockPhysicsEvent;
-import org.bukkit.event.block.NotePlayEvent;
+import org.bukkit.event.block.*;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Predicate;
 
 public class SpecialNoteBlock implements Listener {
     private static final Map<Instrument, Sound> soundMap = new HashMap<>();
@@ -46,13 +48,48 @@ public class SpecialNoteBlock implements Listener {
     @EventHandler
     void onInteract(PlayerInteractEvent event) {
         if (event.hasBlock() && event.getClickedBlock().getType() == Material.NOTE_BLOCK) {
-            if (((NoteBlock) event.getClickedBlock().getBlockData()).getNote().getId() != 0) return;
-            switch (event.getAction()) {
+            Block block = event.getClickedBlock();
+            Player player = event.getPlayer();
+            if (AdditionBlock.isAddition(block)) {
+                ItemStack mainHand = player.getInventory().getItemInMainHand();
+                if (mainHand.getType().isBlock() && event.getAction() == Action.RIGHT_CLICK_BLOCK && !event.getPlayer().isSneaking()) {
+                    Block placedBlock = block.getRelative(event.getBlockFace());
+                    Material originalBlock = placedBlock.getType();
+                    if (!originalBlock.isSolid() &&
+                            placedBlock.getWorld().getNearbyEntities(placedBlock.getLocation().add(0.5, 0.5, 0.5), 0.5, 0.5, 0.5,
+                                    entity -> entity.getType().isAlive()
+                            ).isEmpty()
+                    ) {
+                        block.getRelative(event.getBlockFace()).setType(mainHand.getType());
+                        BlockPlaceEvent blockPlaceEvent = new BlockPlaceEvent(
+                                placedBlock,
+                                placedBlock.getState(),
+                                block,
+                                mainHand,
+                                player,
+                                true,
+                                event.getHand()
+                        );
+                        Bukkit.getPluginManager().callEvent(blockPlaceEvent);
+                        if (blockPlaceEvent.isCancelled()) {
+                            placedBlock.setType(originalBlock);
+                            return;
+                        }
+                        placedBlock.getWorld().playEffect(
+                                placedBlock.getLocation(),
+                                Effect.STEP_SOUND,
+                                mainHand.getType()
+                        );
+                    }
+                }
+            } else switch (event.getAction()) {
                 case RIGHT_CLICK_BLOCK:
-                    cycle(event.getClickedBlock());
-                    playNote(event.getClickedBlock());
-                    event.getPlayer().incrementStatistic(Statistic.NOTEBLOCK_TUNED);
-                    event.setCancelled(true);
+                    if (!player.isSneaking()) {
+                        cycle(block);
+                        playNote(block);
+                        event.getPlayer().incrementStatistic(Statistic.NOTEBLOCK_TUNED);
+                        event.setCancelled(true);
+                    }
                     break;
                 case LEFT_CLICK_BLOCK:
                     event.getPlayer().incrementStatistic(Statistic.NOTEBLOCK_PLAYED);

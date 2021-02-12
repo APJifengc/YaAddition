@@ -5,13 +5,20 @@ import io.github.apjifengc.yaaddition.addition.AdditionBlock;
 import io.github.apjifengc.yaaddition.addition.AdditionItemStack;
 import io.github.apjifengc.yaaddition.addition.AdditionMaterial;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockCanBuildEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCreativeEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerItemHeldEvent;
 import org.bukkit.inventory.ItemStack;
 
 public class BlockListener implements Listener {
@@ -42,7 +49,8 @@ public class BlockListener implements Listener {
                     additionBlock.getMaterial(),
                     additionBlock.getAdditionData()
             );
-            event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), itemStack.asBukkitCopy());
+            if (event.getPlayer().getGameMode() != GameMode.CREATIVE)
+                event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), itemStack.asBukkitCopy());
         }
     }
 }
