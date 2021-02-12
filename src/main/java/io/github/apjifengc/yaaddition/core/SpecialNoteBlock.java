@@ -1,5 +1,6 @@
 package io.github.apjifengc.yaaddition.core;
 
+import com.rabbitown.yalib.module.nms.base.block.NMSBlock;
 import io.github.apjifengc.yaaddition.YaAddition;
 import io.github.apjifengc.yaaddition.addition.AdditionBlock;
 import io.github.apjifengc.yaaddition.addition.AdditionMaterial;
@@ -75,11 +76,11 @@ public class SpecialNoteBlock implements Listener {
                             placedBlock.setType(originalBlock);
                             return;
                         }
-                        placedBlock.getWorld().playEffect(
-                                placedBlock.getLocation(),
-                                Effect.STEP_SOUND,
-                                mainHand.getType()
-                        );
+                        placedBlock.getWorld().playSound(placedBlock.getLocation(),
+                                NMSBlock.get(placedBlock).getSoundEffects().getPlaceSound(),
+                                SoundCategory.BLOCKS,
+                                1.0F,
+                                0.8F);
                     }
                 }
             } else switch (event.getAction()) {
