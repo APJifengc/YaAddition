@@ -3,8 +3,6 @@ package io.github.apjifengc.yaaddition.model.recipe.recipe;
 import io.github.apjifengc.yaaddition.addition.AdditionItemStack;
 import io.github.apjifengc.yaaddition.model.recipe.util.RecipeType;
 
-import org.bukkit.inventory.ItemStack;
-
 import lombok.NonNull;
 
 /**

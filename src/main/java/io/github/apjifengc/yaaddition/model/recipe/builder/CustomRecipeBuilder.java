@@ -2,7 +2,7 @@
 package io.github.apjifengc.yaaddition.model.recipe.builder;
 
 import io.github.apjifengc.yaaddition.addition.AdditionItemStack;
-import io.github.apjifengc.yaaddition.model.recipe.excption.RecipeException;
+import io.github.apjifengc.yaaddition.exception.RecipeException;
 import io.github.apjifengc.yaaddition.model.recipe.recipe.AdditionBlastFurnaceRecipe;
 import io.github.apjifengc.yaaddition.model.recipe.recipe.AdditionCampfireRecipe;
 import io.github.apjifengc.yaaddition.model.recipe.recipe.AdditionFurnaceRecipe;

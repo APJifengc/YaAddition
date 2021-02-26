@@ -40,7 +40,7 @@ public class InGameRecipeBuilder {
      */
     public static void shaped(@NonNull AdditionItemStack[] craftingSource, @NonNull AdditionItemStack craftingResult,
             @NonNull String namespacedKey) {
-        这里什么也没有
+        
     }
 
     /**
@@ -62,7 +62,7 @@ public class InGameRecipeBuilder {
      */
     public static void shapeless(@NonNull AdditionItemStack[] craftingSource, @NonNull AdditionItemStack craftingResult,
             @NonNull String namespacedKey) {
-        这里什么也没有.model
+        
     }
 
     /**
@@ -86,7 +86,7 @@ public class InGameRecipeBuilder {
      */
     public static void furnace(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
             float cookingExperience, int cookingTime, @NonNull String namespacedKey) {
-        这里什么也没有
+        
     }
 
     public static void furnace(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
@@ -126,7 +126,7 @@ public class InGameRecipeBuilder {
      */
     public static void blastFurnace(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
             float cookingExperience, int cookingTime, @NonNull String namespacedKey) {
-        这里什么也没有
+        
     }
 
     public static void blastFurnace(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
@@ -165,7 +165,7 @@ public class InGameRecipeBuilder {
      */
     public static void smoker(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
             float cookingExperience, int cookingTime, @NonNull String namespacedKey) {
-        这里什么也没有
+        
     }
 
     public static void smoker(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
@@ -205,7 +205,7 @@ public class InGameRecipeBuilder {
      */
     public static void campfire(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
             float cookingExperience, int cookingTime, @NonNull String namespacedKey) {
-        这里什么也没有
+        
     }
 
     public static void campfire(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
@@ -242,7 +242,7 @@ public class InGameRecipeBuilder {
      */
     public static void stoneCutter(@NonNull AdditionItemStack cuttingSource, @NonNull AdditionItemStack cuttingResult,
             @NonNull String namespacedKey) {
-        这里什么也没有
+        
     }
 
     /**
@@ -265,7 +265,7 @@ public class InGameRecipeBuilder {
      */
     public static void smithingTable(@NonNull AdditionItemStack smithingBase, @NonNull AdditionItemStack smithingAddition,
             @NonNull AdditionItemStack smithingResult, @NonNull String namespacedKey) {
-        这里什么也没有
+        
     }
 
     /**

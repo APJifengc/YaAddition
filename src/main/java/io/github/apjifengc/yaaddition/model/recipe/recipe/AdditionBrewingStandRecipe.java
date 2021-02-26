@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import io.github.apjifengc.yaaddition.addition.AdditionItemStack;
-import io.github.apjifengc.yaaddition.model.recipe.excption.RecipeException;
+import io.github.apjifengc.yaaddition.exception.RecipeException;
 import io.github.apjifengc.yaaddition.model.recipe.util.RecipeType;
 
 /**

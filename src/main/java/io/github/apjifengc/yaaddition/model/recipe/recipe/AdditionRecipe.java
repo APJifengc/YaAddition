@@ -7,9 +7,9 @@ import java.nio.file.FileAlreadyExistsException;
 import java.util.Map;
 
 import io.github.apjifengc.yaaddition.addition.AdditionItemStack;
-import io.github.apjifengc.yaaddition.model.recipe.excption.IncompleteRecipeException;
-import io.github.apjifengc.yaaddition.model.recipe.excption.RecipeException;
-import io.github.apjifengc.yaaddition.model.recipe.excption.WrongRecipeTypeException;
+import io.github.apjifengc.yaaddition.exception.IncompleteRecipeException;
+import io.github.apjifengc.yaaddition.exception.RecipeException;
+import io.github.apjifengc.yaaddition.exception.WrongRecipeTypeException;
 import io.github.apjifengc.yaaddition.model.recipe.util.RecipeType;
 
 import org.bukkit.util.io.BukkitObjectOutputStream;
