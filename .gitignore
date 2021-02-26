@@ -129,3 +129,10 @@ run/
 .gradle/6.7/fileHashes/fileHashes.lock
 .gradle/6.7/fileChanges/last-build.bin
 .gradle/6.7/executionHistory/executionHistory.lock
+.settings/org.eclipse.m2e.core.prefs
+.factorypath
+.classpath
+.project
+.settings/org.eclipse.core.resources.prefs
+.settings/org.eclipse.jdt.apt.core.prefs
+.settings/org.eclipse.jdt.core.prefs
