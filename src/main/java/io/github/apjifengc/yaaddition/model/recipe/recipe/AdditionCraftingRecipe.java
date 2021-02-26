@@ -1,4 +1,4 @@
-package io.github.apjifengc.yaaddition.recipe.recipe;
+package io.github.apjifengc.yaaddition.model.recipe.recipe;
 
 import org.bukkit.util.io.BukkitObjectInputStream;
 
@@ -12,35 +12,26 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import io.github.apjifengc.yaaddition.addition.AdditionItemStack;
-import io.github.apjifengc.yaaddition.recipe.excption.RecipeException;
-import io.github.apjifengc.yaaddition.recipe.util.RecipeType;
+import io.github.apjifengc.yaaddition.model.recipe.excption.RecipeException;
+import io.github.apjifengc.yaaddition.model.recipe.util.RecipeType;
 
 /**
- * 切石机配方
+ * 有序和无序合成配方的父类
  */
-public class AdditionStoneCutterRecipe extends AdditionRecipe {
+public abstract class AdditionCraftingRecipe extends AdditionRecipe {
 
     @Getter
     @Setter
-    private AdditionItemStack cuttingSource;
+    protected AdditionItemStack[] craftingSource;
 
-    /**
-     * 新建空的切石配方
-     */
-    public AdditionStoneCutterRecipe() {
-        this.type = RecipeType.STONE_CUTTER;
+    protected AdditionCraftingRecipe(@NonNull RecipeType type) {
+        this.type = type;
     }
 
-    /**
-     * 新建切石配方
-     * 
-     * @param cuttingSource 材料
-     * @param cuttingResult 产品
-     */
-    public AdditionStoneCutterRecipe(@NonNull AdditionItemStack cuttingSource, @NonNull AdditionItemStack cuttingResult) {
-        this.cuttingSource = cuttingSource;
-        this.result = cuttingResult;
-        this.type = RecipeType.STONE_CUTTER;
+    protected AdditionCraftingRecipe(AdditionItemStack[] craftingSource, AdditionItemStack craftingResult, @NonNull RecipeType type) {
+        this.craftingSource = craftingSource;
+        this.result = craftingResult;
+        this.type = type;
         namespacedKeyGen(this.result, this.type);
     }
 
@@ -50,7 +41,7 @@ public class AdditionStoneCutterRecipe extends AdditionRecipe {
         HashMap<String, Object> map = new HashMap<>();
         map.put("type", this.type);
         map.put("result", this.result);
-        map.put("cuttingSource", this.cuttingSource);
+        map.put("craftingSource", this.craftingSource);
         save(map);
     }
 
@@ -66,7 +57,7 @@ public class AdditionStoneCutterRecipe extends AdditionRecipe {
             if (readMap instanceof HashMap) {
                 map.putAll((HashMap) readMap);
                 setResult((AdditionItemStack) map.get("result"));
-                this.cuttingSource = (AdditionItemStack) map.get("cuttingSource");
+                this.craftingSource = (AdditionItemStack[]) map.get("craftingSource");
                 this.type = (RecipeType) map.get("type");
             }
         }
@@ -75,11 +66,6 @@ public class AdditionStoneCutterRecipe extends AdditionRecipe {
 
     @Override
     public boolean isIncomplete() {
-        return this.cuttingSource == null || this.result == null;
-    }
-
-    @Override
-    public boolean isIncorrectType() {
-        return isIncorrectType(RecipeType.STONE_CUTTER);
+        return this.craftingSource == null || this.result == null;
     }
 }

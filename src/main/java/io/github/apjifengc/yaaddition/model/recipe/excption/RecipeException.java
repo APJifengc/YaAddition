@@ -1,4 +1,4 @@
-package io.github.apjifengc.yaaddition.recipe.excption;
+package io.github.apjifengc.yaaddition.model.recipe.excption;
 
 public class RecipeException extends Exception {
 

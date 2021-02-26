@@ -1,4 +1,4 @@
-package io.github.apjifengc.yaaddition.recipe.util;
+package io.github.apjifengc.yaaddition.model.recipe.util;
 
 /**
  * 枚举所有配方类型

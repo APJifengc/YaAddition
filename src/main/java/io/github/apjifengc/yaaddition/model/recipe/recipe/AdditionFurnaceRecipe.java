@@ -1,8 +1,8 @@
 
-package io.github.apjifengc.yaaddition.recipe.recipe;
+package io.github.apjifengc.yaaddition.model.recipe.recipe;
 
 import io.github.apjifengc.yaaddition.addition.AdditionItemStack;
-import io.github.apjifengc.yaaddition.recipe.util.RecipeType;
+import io.github.apjifengc.yaaddition.model.recipe.util.RecipeType;
 
 import lombok.NonNull;
 

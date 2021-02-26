@@ -1,4 +1,4 @@
-package io.github.apjifengc.yaaddition.recipe.recipe;
+package io.github.apjifengc.yaaddition.model.recipe.recipe;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -7,10 +7,10 @@ import java.nio.file.FileAlreadyExistsException;
 import java.util.Map;
 
 import io.github.apjifengc.yaaddition.addition.AdditionItemStack;
-import io.github.apjifengc.yaaddition.recipe.excption.IncompleteRecipeException;
-import io.github.apjifengc.yaaddition.recipe.excption.RecipeException;
-import io.github.apjifengc.yaaddition.recipe.excption.WrongRecipeTypeException;
-import io.github.apjifengc.yaaddition.recipe.util.RecipeType;
+import io.github.apjifengc.yaaddition.model.recipe.excption.IncompleteRecipeException;
+import io.github.apjifengc.yaaddition.model.recipe.excption.RecipeException;
+import io.github.apjifengc.yaaddition.model.recipe.excption.WrongRecipeTypeException;
+import io.github.apjifengc.yaaddition.model.recipe.util.RecipeType;
 
 import org.bukkit.util.io.BukkitObjectOutputStream;
 

@@ -1,4 +1,4 @@
-package io.github.apjifengc.yaaddition.recipe.recipe;
+package io.github.apjifengc.yaaddition.model.recipe.recipe;
 
 import org.bukkit.util.io.BukkitObjectInputStream;
 
@@ -12,8 +12,8 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import io.github.apjifengc.yaaddition.addition.AdditionItemStack;
-import io.github.apjifengc.yaaddition.recipe.excption.RecipeException;
-import io.github.apjifengc.yaaddition.recipe.util.RecipeType;
+import io.github.apjifengc.yaaddition.model.recipe.excption.RecipeException;
+import io.github.apjifengc.yaaddition.model.recipe.util.RecipeType;
 
 /**
  * 锻造配方

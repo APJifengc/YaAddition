@@ -1,18 +1,18 @@
 
-package io.github.apjifengc.yaaddition.recipe.builder;
+package io.github.apjifengc.yaaddition.model.recipe.builder;
 
 import java.io.File;
 
 import io.github.apjifengc.yaaddition.addition.AdditionItemStack;
-import io.github.apjifengc.yaaddition.recipe.recipe.AdditionBlastFurnaceRecipe;
-import io.github.apjifengc.yaaddition.recipe.recipe.AdditionCampfireRecipe;
-import io.github.apjifengc.yaaddition.recipe.recipe.AdditionFurnaceRecipe;
-import io.github.apjifengc.yaaddition.recipe.recipe.AdditionShapedCraftRecipe;
-import io.github.apjifengc.yaaddition.recipe.recipe.AdditionShapelessCraftRecipe;
-import io.github.apjifengc.yaaddition.recipe.recipe.AdditionSmithingTableRecipe;
-import io.github.apjifengc.yaaddition.recipe.recipe.AdditionSmokerRecipe;
-import io.github.apjifengc.yaaddition.recipe.recipe.AdditionStoneCutterRecipe;
-import io.github.apjifengc.yaaddition.recipe.util.RecipeType;
+import io.github.apjifengc.yaaddition.model.recipe.recipe.AdditionBlastFurnaceRecipe;
+import io.github.apjifengc.yaaddition.model.recipe.recipe.AdditionCampfireRecipe;
+import io.github.apjifengc.yaaddition.model.recipe.recipe.AdditionFurnaceRecipe;
+import io.github.apjifengc.yaaddition.model.recipe.recipe.AdditionShapedCraftRecipe;
+import io.github.apjifengc.yaaddition.model.recipe.recipe.AdditionShapelessCraftRecipe;
+import io.github.apjifengc.yaaddition.model.recipe.recipe.AdditionSmithingTableRecipe;
+import io.github.apjifengc.yaaddition.model.recipe.recipe.AdditionSmokerRecipe;
+import io.github.apjifengc.yaaddition.model.recipe.recipe.AdditionStoneCutterRecipe;
+import io.github.apjifengc.yaaddition.model.recipe.util.RecipeType;
 
 import lombok.NonNull;
 
@@ -62,7 +62,7 @@ public class InGameRecipeBuilder {
      */
     public static void shapeless(@NonNull AdditionItemStack[] craftingSource, @NonNull AdditionItemStack craftingResult,
             @NonNull String namespacedKey) {
-        这里什么也没有
+        这里什么也没有.model
     }
 
     /**
