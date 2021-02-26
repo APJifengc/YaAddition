@@ -1,20 +1,19 @@
 
 package io.github.apjifengc.yaaddition.recipe.recipe;
 
+import io.github.apjifengc.yaaddition.addition.AdditionItemStack;
 import io.github.apjifengc.yaaddition.recipe.util.RecipeType;
-
-import org.bukkit.inventory.ItemStack;
 
 import lombok.NonNull;
 
 /**
  * 高炉配方
  */
-public class YaBlastFurnaceRecipe extends YaCookingRecipe {
+public class AdditionBlastFurnaceRecipe extends AdditionCookingRecipe {
     /**
      * 新建空的高炉配方
      */
-    public YaBlastFurnaceRecipe() {
+    public AdditionBlastFurnaceRecipe() {
         super(RecipeType.BLAST_FURNACE);
     }
 
@@ -26,21 +25,21 @@ public class YaBlastFurnaceRecipe extends YaCookingRecipe {
      * @param cookingExperience 经验
      * @param cookingTime       熔炼时间
      */
-    public YaBlastFurnaceRecipe(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult,
+    public AdditionBlastFurnaceRecipe(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
             float cookingExperience, int cookingTime) {
         super(cookingSource, cookingResult, cookingExperience, cookingTime, RecipeType.BLAST_FURNACE);
     }
 
-    public YaBlastFurnaceRecipe(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult,
+    public AdditionBlastFurnaceRecipe(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
             float cookingExperience) {
         super(cookingSource, cookingResult, cookingExperience, 100, RecipeType.BLAST_FURNACE);
     }
 
-    public YaBlastFurnaceRecipe(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult, int cookingTime) {
+    public AdditionBlastFurnaceRecipe(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult, int cookingTime) {
         super(cookingSource, cookingResult, 0, cookingTime, RecipeType.BLAST_FURNACE);
     }
 
-    public YaBlastFurnaceRecipe(@NonNull ItemStack cookingResult, @NonNull ItemStack cookingSource) {
+    public AdditionBlastFurnaceRecipe(@NonNull AdditionItemStack cookingResult, @NonNull AdditionItemStack cookingSource) {
         super(cookingSource, cookingResult, 0, 100, RecipeType.BLAST_FURNACE);
     }
 

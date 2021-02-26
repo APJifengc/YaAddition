@@ -1,16 +1,18 @@
 
 package io.github.apjifengc.yaaddition.recipe.builder;
 
-import io.github.apjifengc.yaaddition.recipe.recipe.YaBlastFurnaceRecipe;
-import io.github.apjifengc.yaaddition.recipe.recipe.YaCampfireRecipe;
-import io.github.apjifengc.yaaddition.recipe.recipe.YaFurnaceRecipe;
-import io.github.apjifengc.yaaddition.recipe.recipe.YaShapedCraftRecipe;
-import io.github.apjifengc.yaaddition.recipe.recipe.YaShapelessCraftRecipe;
-import io.github.apjifengc.yaaddition.recipe.recipe.YaSmithingTableRecipe;
-import io.github.apjifengc.yaaddition.recipe.recipe.YaSmokerRecipe;
-import io.github.apjifengc.yaaddition.recipe.recipe.YaStoneCutterRecipe;
+import io.github.apjifengc.yaaddition.addition.AdditionItemStack;
+import io.github.apjifengc.yaaddition.recipe.excption.RecipeException;
+import io.github.apjifengc.yaaddition.recipe.recipe.AdditionBlastFurnaceRecipe;
+import io.github.apjifengc.yaaddition.recipe.recipe.AdditionCampfireRecipe;
+import io.github.apjifengc.yaaddition.recipe.recipe.AdditionFurnaceRecipe;
+import io.github.apjifengc.yaaddition.recipe.recipe.AdditionShapedCraftRecipe;
+import io.github.apjifengc.yaaddition.recipe.recipe.AdditionShapelessCraftRecipe;
+import io.github.apjifengc.yaaddition.recipe.recipe.AdditionSmithingTableRecipe;
+import io.github.apjifengc.yaaddition.recipe.recipe.AdditionSmokerRecipe;
+import io.github.apjifengc.yaaddition.recipe.recipe.AdditionStoneCutterRecipe;
 
-import org.bukkit.inventory.ItemStack;
+import java.io.IOException;
 
 import lombok.NonNull;
 
@@ -25,9 +27,10 @@ public class CustomRecipeBuilder {
      * @param craftingResult 产物
      * @param namespacedKey  命名空间
      */
-    public static void shaped(@NonNull ItemStack[] craftingSource, @NonNull ItemStack craftingResult)
-            throws Exception {
-        YaShapedCraftRecipe yaShapedCraftRecipe = new YaShapedCraftRecipe(craftingSource, craftingResult);
+    public static void shaped(@NonNull AdditionItemStack[] craftingSource, @NonNull AdditionItemStack craftingResult)
+            throws IOException, RecipeException
+             {
+        AdditionShapedCraftRecipe yaShapedCraftRecipe = new AdditionShapedCraftRecipe(craftingSource, craftingResult);
 
         yaShapedCraftRecipe.save();
         InGameRecipeBuilder.addRecipe(yaShapedCraftRecipe);
@@ -40,9 +43,9 @@ public class CustomRecipeBuilder {
      * @param craftingResult 成品
      * @param namespacedKey  命名空间
      */
-    public static void shapeless(@NonNull ItemStack[] craftingSource, @NonNull ItemStack craftingResult)
-            throws Exception {
-        YaShapelessCraftRecipe yaShapelessCraftRecipe = new YaShapelessCraftRecipe(craftingSource, craftingResult);
+    public static void shapeless(@NonNull AdditionItemStack[] craftingSource, @NonNull AdditionItemStack craftingResult)
+            throws IOException, RecipeException {
+        AdditionShapelessCraftRecipe yaShapelessCraftRecipe = new AdditionShapelessCraftRecipe(craftingSource, craftingResult);
 
         yaShapelessCraftRecipe.save();
         InGameRecipeBuilder.addRecipe(yaShapelessCraftRecipe);
@@ -57,9 +60,9 @@ public class CustomRecipeBuilder {
      * @param cookingTime       烧制时间
      * @param namespacedKey     命名空间
      */
-    public static void furnace(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult,
-            float cookingExperience, int cookingTime) throws Exception {
-        YaFurnaceRecipe yaFurnaceRecipe = new YaFurnaceRecipe(cookingSource, cookingResult, cookingExperience,
+    public static void furnace(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
+            float cookingExperience, int cookingTime) throws IOException, RecipeException {
+        AdditionFurnaceRecipe yaFurnaceRecipe = new AdditionFurnaceRecipe(cookingSource, cookingResult, cookingExperience,
                 cookingTime);
 
         yaFurnaceRecipe.save();
@@ -75,9 +78,9 @@ public class CustomRecipeBuilder {
      * @param cookingTime       熔炼时间
      * @param namespacedKey     命名空间
      */
-    public static void blastFurnace(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult,
-            float cookingExperience, int cookingTime) throws Exception {
-        YaBlastFurnaceRecipe yaBlastFurnaceRecipe = new YaBlastFurnaceRecipe(cookingSource, cookingResult,
+    public static void blastFurnace(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
+            float cookingExperience, int cookingTime) throws IOException, RecipeException {
+        AdditionBlastFurnaceRecipe yaBlastFurnaceRecipe = new AdditionBlastFurnaceRecipe(cookingSource, cookingResult,
                 cookingExperience, cookingTime);
 
         yaBlastFurnaceRecipe.save();
@@ -93,9 +96,9 @@ public class CustomRecipeBuilder {
      * @param cookingTime       烹饪时间
      * @param namespacedKey     命名空间
      */
-    public static void smoker(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult,
-            float cookingExperience, int cookingTime) throws Exception {
-        YaSmokerRecipe yaSmokerRecipe = new YaSmokerRecipe(cookingSource, cookingResult, cookingExperience,
+    public static void smoker(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
+            float cookingExperience, int cookingTime) throws IOException, RecipeException {
+        AdditionSmokerRecipe yaSmokerRecipe = new AdditionSmokerRecipe(cookingSource, cookingResult, cookingExperience,
                 cookingTime);
 
         yaSmokerRecipe.save();
@@ -111,9 +114,9 @@ public class CustomRecipeBuilder {
      * @param cookingTime       烹饪时间
      * @param namespacedKey     命名空间
      */
-    public static void campfire(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult,
-            float cookingExperience, int cookingTime) throws Exception {
-        YaCampfireRecipe yaCampfireRecipe = new YaCampfireRecipe(cookingSource, cookingResult, cookingExperience,
+    public static void campfire(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
+            float cookingExperience, int cookingTime) throws IOException, RecipeException {
+        AdditionCampfireRecipe yaCampfireRecipe = new AdditionCampfireRecipe(cookingSource, cookingResult, cookingExperience,
                 cookingTime);
 
         yaCampfireRecipe.save();
@@ -127,9 +130,9 @@ public class CustomRecipeBuilder {
      * @param cuttingResult 产物
      * @param namespacedKey 命名空间
      */
-    public static void stoneCutter(@NonNull ItemStack cuttingSource, @NonNull ItemStack cuttingResult)
-            throws Exception {
-        YaStoneCutterRecipe yaStoneCutterRecipe = new YaStoneCutterRecipe(cuttingSource, cuttingResult);
+    public static void stoneCutter(@NonNull AdditionItemStack cuttingSource, @NonNull AdditionItemStack cuttingResult)
+            throws IOException, RecipeException {
+        AdditionStoneCutterRecipe yaStoneCutterRecipe = new AdditionStoneCutterRecipe(cuttingSource, cuttingResult);
 
         yaStoneCutterRecipe.save();
         InGameRecipeBuilder.addRecipe(yaStoneCutterRecipe);
@@ -143,9 +146,9 @@ public class CustomRecipeBuilder {
      * @param smithingResult   产物
      * @param namespacedKey    命名空间
      */
-    public static void smithingTable(@NonNull ItemStack smithingBase, @NonNull ItemStack smithingAddition,
-            @NonNull ItemStack smithingResult) throws Exception {
-        YaSmithingTableRecipe yaSmithingTableRecipe = new YaSmithingTableRecipe(smithingBase, smithingAddition,
+    public static void smithingTable(@NonNull AdditionItemStack smithingBase, @NonNull AdditionItemStack smithingAddition,
+            @NonNull AdditionItemStack smithingResult) throws IOException, RecipeException {
+        AdditionSmithingTableRecipe yaSmithingTableRecipe = new AdditionSmithingTableRecipe(smithingBase, smithingAddition,
                 smithingResult);
 
         yaSmithingTableRecipe.save();

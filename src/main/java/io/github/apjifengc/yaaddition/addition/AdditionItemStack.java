@@ -1,22 +1,18 @@
 package io.github.apjifengc.yaaddition.addition;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import io.github.apjifengc.yaaddition.util.Data;
 import io.github.bananapuncher714.nbteditor.NBTEditor;
 import lombok.Getter;
-import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.Map;
-
 public class AdditionItemStack {
-    @Getter private final AdditionMaterial material;
-    @Getter private final int amount;
-    @Getter private final Data data;
+    @Getter
+    private final AdditionMaterial material;
+    @Getter
+    private final int amount;
+    @Getter
+    private final Data data;
     private final ItemStack itemStack;
 
     public AdditionItemStack(final AdditionMaterial material, int amount, Data data) {
@@ -31,7 +27,7 @@ public class AdditionItemStack {
         itemStack.setItemMeta(itemMeta);
     }
 
-    //<editor-fold desc="Constructors">
+    // <editor-fold desc="Constructors">
     public AdditionItemStack(final AdditionMaterial material, Data data) {
         this(material, 1, data);
     }
@@ -41,7 +37,7 @@ public class AdditionItemStack {
     }
 
     public AdditionItemStack(final String material, int amount, Data data) {
-        this(AdditionMaterial.byId(material), 1, data);
+        this(AdditionMaterial.byId(material), amount, data);
     }
 
     public AdditionItemStack(final AdditionMaterial material, int amount, String data) {
@@ -57,7 +53,7 @@ public class AdditionItemStack {
     }
 
     public AdditionItemStack(final String material, int amount, String data) {
-        this(AdditionMaterial.byId(material), 1, data);
+        this(AdditionMaterial.byId(material), amount, data);
     }
 
     public AdditionItemStack(final AdditionMaterial material, int amount) {
@@ -73,9 +69,9 @@ public class AdditionItemStack {
     }
 
     public AdditionItemStack(final String material, int amount) {
-        this(AdditionMaterial.byId(material), 1);
+        this(AdditionMaterial.byId(material), amount);
     }
-    //</editor-fold>
+    // </editor-fold>
 
     public static AdditionItemStack asAdditionCopy(ItemStack itemStack) {
         AdditionMaterial material = AdditionMaterial.byId(NBTEditor.getString(itemStack, "addition", "id"));
@@ -88,8 +84,7 @@ public class AdditionItemStack {
     }
 
     public static ItemStack asBukkitCopy(AdditionItemStack itemStack) {
-        return NBTEditor.set(
-                NBTEditor.set(itemStack.itemStack, itemStack.data.toString(), "addition", "data"),
+        return NBTEditor.set(NBTEditor.set(itemStack.itemStack, itemStack.data.toString(), "addition", "data"),
                 itemStack.material.getIdentifier(), "addition", "id");
     }
 

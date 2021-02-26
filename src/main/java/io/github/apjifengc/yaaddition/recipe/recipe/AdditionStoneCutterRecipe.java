@@ -1,6 +1,5 @@
 package io.github.apjifengc.yaaddition.recipe.recipe;
 
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.io.BukkitObjectInputStream;
 
 import lombok.Getter;
@@ -12,22 +11,23 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
 
+import io.github.apjifengc.yaaddition.addition.AdditionItemStack;
 import io.github.apjifengc.yaaddition.recipe.excption.RecipeException;
 import io.github.apjifengc.yaaddition.recipe.util.RecipeType;
 
 /**
  * 切石机配方
  */
-public class YaStoneCutterRecipe extends YaRecipe {
+public class AdditionStoneCutterRecipe extends AdditionRecipe {
 
     @Getter
     @Setter
-    private ItemStack cuttingSource;
+    private AdditionItemStack cuttingSource;
 
     /**
      * 新建空的切石配方
      */
-    public YaStoneCutterRecipe() {
+    public AdditionStoneCutterRecipe() {
         this.type = RecipeType.STONE_CUTTER;
     }
 
@@ -37,7 +37,7 @@ public class YaStoneCutterRecipe extends YaRecipe {
      * @param cuttingSource 材料
      * @param cuttingResult 产品
      */
-    public YaStoneCutterRecipe(@NonNull ItemStack cuttingSource, @NonNull ItemStack cuttingResult) {
+    public AdditionStoneCutterRecipe(@NonNull AdditionItemStack cuttingSource, @NonNull AdditionItemStack cuttingResult) {
         this.cuttingSource = cuttingSource;
         this.result = cuttingResult;
         this.type = RecipeType.STONE_CUTTER;
@@ -65,8 +65,8 @@ public class YaStoneCutterRecipe extends YaRecipe {
 
             if (readMap instanceof HashMap) {
                 map.putAll((HashMap) readMap);
-                setResult((ItemStack) map.get("result"));
-                this.cuttingSource = (ItemStack) map.get("cuttingSource");
+                setResult((AdditionItemStack) map.get("result"));
+                this.cuttingSource = (AdditionItemStack) map.get("cuttingSource");
                 this.type = (RecipeType) map.get("type");
             }
         }

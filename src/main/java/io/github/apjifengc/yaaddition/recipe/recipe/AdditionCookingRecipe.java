@@ -1,6 +1,5 @@
 package io.github.apjifengc.yaaddition.recipe.recipe;
 
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.io.BukkitObjectInputStream;
 
 import lombok.Getter;
@@ -12,27 +11,36 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
 
+import io.github.apjifengc.yaaddition.addition.AdditionItemStack;
 import io.github.apjifengc.yaaddition.recipe.excption.RecipeException;
 import io.github.apjifengc.yaaddition.recipe.util.RecipeType;
 
 /**
- * 有序和无序合成配方的父类
+ * 所有烧制配方的父类
  */
-public abstract class YaCraftingRecipe extends YaRecipe {
+public abstract class AdditionCookingRecipe extends AdditionRecipe {
 
     @Getter
     @Setter
-    protected ItemStack[] craftingSource;
+    protected AdditionItemStack cookingSource;
+    @Getter
+    @Setter
+    protected float cookingExperience = 0;
+    @Getter
+    @Setter
+    protected int cookingTime = 200;
 
-    protected YaCraftingRecipe(@NonNull RecipeType type) {
+    protected AdditionCookingRecipe(RecipeType type) {
         this.type = type;
     }
 
-    protected YaCraftingRecipe(ItemStack[] craftingSource, ItemStack craftingResult, @NonNull RecipeType type) {
-        this.craftingSource = craftingSource;
-        this.result = craftingResult;
+    protected AdditionCookingRecipe(AdditionItemStack cookingSource, AdditionItemStack cookingResult, float cookingExperience,
+            int cookingTime, RecipeType type) {
+        this.cookingSource = cookingSource;
+        setResult(cookingResult);
+        this.cookingExperience = cookingExperience;
+        this.cookingTime = cookingTime;
         this.type = type;
-        namespacedKeyGen(this.result, this.type);
     }
 
     @Override
@@ -41,7 +49,9 @@ public abstract class YaCraftingRecipe extends YaRecipe {
         HashMap<String, Object> map = new HashMap<>();
         map.put("type", this.type);
         map.put("result", this.result);
-        map.put("craftingSource", this.craftingSource);
+        map.put("cookingSource", this.cookingSource);
+        map.put("cookingExperience", this.cookingExperience);
+        map.put("cookingTime", this.cookingTime);
         save(map);
     }
 
@@ -56,8 +66,10 @@ public abstract class YaCraftingRecipe extends YaRecipe {
 
             if (readMap instanceof HashMap) {
                 map.putAll((HashMap) readMap);
-                setResult((ItemStack) map.get("result"));
-                this.craftingSource = (ItemStack[]) map.get("craftingSource");
+                this.cookingExperience = (float) map.get("cookingExperience");
+                this.cookingTime = (int) map.get("cookingTime");
+                this.cookingSource = (AdditionItemStack) map.get("cookingSource");
+                setResult((AdditionItemStack) map.get("result"));
                 this.type = (RecipeType) map.get("type");
             }
         }
@@ -66,6 +78,6 @@ public abstract class YaCraftingRecipe extends YaRecipe {
 
     @Override
     public boolean isIncomplete() {
-        return this.craftingSource == null || this.result == null;
+        return this.cookingSource == null || this.result == null;
     }
 }

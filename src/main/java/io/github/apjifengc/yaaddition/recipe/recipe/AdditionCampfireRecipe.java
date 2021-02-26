@@ -1,20 +1,19 @@
 
 package io.github.apjifengc.yaaddition.recipe.recipe;
 
+import io.github.apjifengc.yaaddition.addition.AdditionItemStack;
 import io.github.apjifengc.yaaddition.recipe.util.RecipeType;
-
-import org.bukkit.inventory.ItemStack;
 
 import lombok.NonNull;
 
 /**
  * 篝火配方
  */
-public class YaCampfireRecipe extends YaCookingRecipe {
+public class AdditionCampfireRecipe extends AdditionCookingRecipe {
     /**
      * 新建空的篝火配方
      */
-    public YaCampfireRecipe() {
+    public AdditionCampfireRecipe() {
         super(RecipeType.CAMPFIRE);
     }
 
@@ -26,21 +25,21 @@ public class YaCampfireRecipe extends YaCookingRecipe {
      * @param cookingExperience 经验
      * @param cookingTime       烹饪时间
      */
-    public YaCampfireRecipe(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult, float cookingExperience,
+    public AdditionCampfireRecipe(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult, float cookingExperience,
             int cookingTime) {
         super(cookingSource, cookingResult, cookingExperience, cookingTime, RecipeType.CAMPFIRE);
     }
 
-    public YaCampfireRecipe(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult,
+    public AdditionCampfireRecipe(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
             float cookingExperience) {
         super(cookingSource, cookingResult, cookingExperience, 200, RecipeType.CAMPFIRE);
     }
 
-    public YaCampfireRecipe(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult, int cookingTime) {
+    public AdditionCampfireRecipe(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult, int cookingTime) {
         super(cookingSource, cookingResult, 0, cookingTime, RecipeType.CAMPFIRE);
     }
 
-    public YaCampfireRecipe(@NonNull ItemStack cookingResult, @NonNull ItemStack cookingSource) {
+    public AdditionCampfireRecipe(@NonNull AdditionItemStack cookingResult, @NonNull AdditionItemStack cookingSource) {
         super(cookingSource, cookingResult, 0, 200, RecipeType.CAMPFIRE);
     }
 

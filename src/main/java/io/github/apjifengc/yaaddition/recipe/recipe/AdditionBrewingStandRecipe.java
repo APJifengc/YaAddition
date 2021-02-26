@@ -1,6 +1,5 @@
 package io.github.apjifengc.yaaddition.recipe.recipe;
 
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.io.BukkitObjectInputStream;
 
 import lombok.Getter;
@@ -12,35 +11,39 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
 
+import io.github.apjifengc.yaaddition.addition.AdditionItemStack;
 import io.github.apjifengc.yaaddition.recipe.excption.RecipeException;
 import io.github.apjifengc.yaaddition.recipe.util.RecipeType;
 
 /**
- * 所有烧制配方的父类
+ * 酿造配方
  */
-public abstract class YaCookingRecipe extends YaRecipe {
+public class AdditionBrewingStandRecipe extends AdditionRecipe {
 
     @Getter
     @Setter
-    protected ItemStack cookingSource;
+    private AdditionItemStack ingredient;
     @Getter
     @Setter
-    protected float cookingExperience = 0;
-    @Getter
-    @Setter
-    protected int cookingTime = 200;
+    private AdditionItemStack potion;
 
-    protected YaCookingRecipe(RecipeType type) {
-        this.type = type;
+    /**
+     * 新建空的酿造配方
+     */
+    public AdditionBrewingStandRecipe() {
+        this.type = RecipeType.BREWING_STAND;
     }
 
-    protected YaCookingRecipe(ItemStack cookingSource, ItemStack cookingResult, float cookingExperience,
-            int cookingTime, RecipeType type) {
-        this.cookingSource = cookingSource;
-        setResult(cookingResult);
-        this.cookingExperience = cookingExperience;
-        this.cookingTime = cookingTime;
-        this.type = type;
+    /**
+     * 新建酿造配方
+     */
+    public AdditionBrewingStandRecipe(@NonNull AdditionItemStack ingredient, @NonNull AdditionItemStack potion,
+            @NonNull AdditionItemStack brewingResult) {
+        this.ingredient = ingredient;
+        this.potion = potion;
+        this.result = brewingResult;
+        this.type = RecipeType.BREWING_STAND;
+        namespacedKeyGen(this.result, this.type);
     }
 
     @Override
@@ -49,9 +52,8 @@ public abstract class YaCookingRecipe extends YaRecipe {
         HashMap<String, Object> map = new HashMap<>();
         map.put("type", this.type);
         map.put("result", this.result);
-        map.put("cookingSource", this.cookingSource);
-        map.put("cookingExperience", this.cookingExperience);
-        map.put("cookingTime", this.cookingTime);
+        map.put("ingredient", this.ingredient);
+        map.put("potion", this.potion);
         save(map);
     }
 
@@ -66,10 +68,9 @@ public abstract class YaCookingRecipe extends YaRecipe {
 
             if (readMap instanceof HashMap) {
                 map.putAll((HashMap) readMap);
-                this.cookingExperience = (float) map.get("cookingExperience");
-                this.cookingTime = (int) map.get("cookingTime");
-                this.cookingSource = (ItemStack) map.get("cookingSource");
-                setResult((ItemStack) map.get("result"));
+                setResult((AdditionItemStack) map.get("result"));
+                this.ingredient = (AdditionItemStack) map.get("ingredient");
+                this.potion = (AdditionItemStack) map.get("potion");
                 this.type = (RecipeType) map.get("type");
             }
         }
@@ -78,6 +79,11 @@ public abstract class YaCookingRecipe extends YaRecipe {
 
     @Override
     public boolean isIncomplete() {
-        return this.cookingSource == null || this.result == null;
+        return this.ingredient == null || this.potion == null || this.result == null;
+    }
+
+    @Override
+    public boolean isIncorrectType() {
+        return isIncorrectType(RecipeType.BREWING_STAND);
     }
 }

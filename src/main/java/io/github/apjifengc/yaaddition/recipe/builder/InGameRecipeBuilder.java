@@ -3,29 +3,16 @@ package io.github.apjifengc.yaaddition.recipe.builder;
 
 import java.io.File;
 
-import io.github.apjifengc.yaaddition.YaAddition;
-import io.github.apjifengc.yaaddition.recipe.recipe.YaBlastFurnaceRecipe;
-import io.github.apjifengc.yaaddition.recipe.recipe.YaCampfireRecipe;
-import io.github.apjifengc.yaaddition.recipe.recipe.YaFurnaceRecipe;
-import io.github.apjifengc.yaaddition.recipe.recipe.YaShapedCraftRecipe;
-import io.github.apjifengc.yaaddition.recipe.recipe.YaShapelessCraftRecipe;
-import io.github.apjifengc.yaaddition.recipe.recipe.YaSmithingTableRecipe;
-import io.github.apjifengc.yaaddition.recipe.recipe.YaSmokerRecipe;
-import io.github.apjifengc.yaaddition.recipe.recipe.YaStoneCutterRecipe;
+import io.github.apjifengc.yaaddition.addition.AdditionItemStack;
+import io.github.apjifengc.yaaddition.recipe.recipe.AdditionBlastFurnaceRecipe;
+import io.github.apjifengc.yaaddition.recipe.recipe.AdditionCampfireRecipe;
+import io.github.apjifengc.yaaddition.recipe.recipe.AdditionFurnaceRecipe;
+import io.github.apjifengc.yaaddition.recipe.recipe.AdditionShapedCraftRecipe;
+import io.github.apjifengc.yaaddition.recipe.recipe.AdditionShapelessCraftRecipe;
+import io.github.apjifengc.yaaddition.recipe.recipe.AdditionSmithingTableRecipe;
+import io.github.apjifengc.yaaddition.recipe.recipe.AdditionSmokerRecipe;
+import io.github.apjifengc.yaaddition.recipe.recipe.AdditionStoneCutterRecipe;
 import io.github.apjifengc.yaaddition.recipe.util.RecipeType;
-
-import org.bukkit.Bukkit;
-import org.bukkit.NamespacedKey;
-import org.bukkit.inventory.BlastingRecipe;
-import org.bukkit.inventory.CampfireRecipe;
-import org.bukkit.inventory.FurnaceRecipe;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.RecipeChoice;
-import org.bukkit.inventory.ShapedRecipe;
-import org.bukkit.inventory.ShapelessRecipe;
-import org.bukkit.inventory.SmithingRecipe;
-import org.bukkit.inventory.SmokingRecipe;
-import org.bukkit.inventory.StonecuttingRecipe;
 
 import lombok.NonNull;
 
@@ -34,14 +21,12 @@ import lombok.NonNull;
  */
 public class InGameRecipeBuilder {
 
-    private static final char[] alphabet = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I' };
-
     /**
      * 从配方添加有序合成
      * 
-     * @param recipe {@link YaShapedCraftRecipe}有序合成
+     * @param recipe {@link AdditionShapedCraftRecipe}有序合成
      */
-    public static void addRecipe(YaShapedCraftRecipe yaShapedCraftRecipeya) {
+    public static void addRecipe(AdditionShapedCraftRecipe yaShapedCraftRecipeya) {
         shaped(yaShapedCraftRecipeya.getCraftingSource(), yaShapedCraftRecipeya.getResult(),
                 yaShapedCraftRecipeya.getNamespacedKey());
     }
@@ -53,27 +38,17 @@ public class InGameRecipeBuilder {
      * @param craftingResult 产物
      * @param namespacedKey  命名空间
      */
-    public static void shaped(@NonNull ItemStack[] craftingSource, @NonNull ItemStack craftingResult,
+    public static void shaped(@NonNull AdditionItemStack[] craftingSource, @NonNull AdditionItemStack craftingResult,
             @NonNull String namespacedKey) {
-        NamespacedKey targetKey = new NamespacedKey(YaAddition.getInstance(), namespacedKey);
-        ShapedRecipe targetRecipe = new ShapedRecipe(targetKey, craftingResult);
-        targetRecipe.shape("ABC", "DEF", "GHI");
-
-        for (int i = 0; i < 9; i++) {
-            if (craftingSource[i] != null) {
-                targetRecipe.setIngredient(alphabet[i], craftingSource[i].getType());
-            }
-        }
-
-        Bukkit.addRecipe(targetRecipe);
+        这里什么也没有
     }
 
     /**
      * 从配方添加无序合成
      * 
-     * @param recipe {@link YaShapelessCraftRecipe}无序合成
+     * @param recipe {@link AdditionShapelessCraftRecipe}无序合成
      */
-    public static void addRecipe(YaShapelessCraftRecipe yaShapelessCraftRecipe) {
+    public static void addRecipe(AdditionShapelessCraftRecipe yaShapelessCraftRecipe) {
         shapeless(yaShapelessCraftRecipe.getCraftingSource(), yaShapelessCraftRecipe.getResult(),
                 yaShapelessCraftRecipe.getNamespacedKey());
     }
@@ -85,26 +60,17 @@ public class InGameRecipeBuilder {
      * @param craftingResult 成品
      * @param namespacedKey  命名空间
      */
-    public static void shapeless(@NonNull ItemStack[] craftingSource, @NonNull ItemStack craftingResult,
+    public static void shapeless(@NonNull AdditionItemStack[] craftingSource, @NonNull AdditionItemStack craftingResult,
             @NonNull String namespacedKey) {
-        NamespacedKey targetKey = new NamespacedKey(YaAddition.getInstance(), namespacedKey);
-        ShapelessRecipe targetRecipe = new ShapelessRecipe(targetKey, craftingResult);
-
-        for (int i = 0; i < 9; i++) {
-            if (craftingSource[i] != null) {
-                targetRecipe.addIngredient(craftingSource[i].getType());
-            }
-        }
-
-        Bukkit.addRecipe(targetRecipe);
+        这里什么也没有
     }
 
     /**
      * 从配方添加熔炉配方
      * 
-     * @param recipe {@link YaFurnaceRecipe}熔炉配方
+     * @param recipe {@link AdditionFurnaceRecipe}熔炉配方
      */
-    public static void addRecipe(YaFurnaceRecipe yaFurnaceRecipe) {
+    public static void addRecipe(AdditionFurnaceRecipe yaFurnaceRecipe) {
         furnace(yaFurnaceRecipe.getResult(), yaFurnaceRecipe.getCookingSource(), yaFurnaceRecipe.getCookingExperience(),
                 yaFurnaceRecipe.getCookingTime(), yaFurnaceRecipe.getNamespacedKey());
     }
@@ -118,25 +84,22 @@ public class InGameRecipeBuilder {
      * @param cookingTime       烧制时间
      * @param namespacedKey     命名空间
      */
-    public static void furnace(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult,
+    public static void furnace(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
             float cookingExperience, int cookingTime, @NonNull String namespacedKey) {
-        NamespacedKey targetKey = new NamespacedKey(YaAddition.getInstance(), namespacedKey);
-        FurnaceRecipe furnaceRecipe = new FurnaceRecipe(targetKey, cookingSource, cookingResult.getType(),
-                cookingExperience, cookingTime);
-        Bukkit.addRecipe(furnaceRecipe);
+        这里什么也没有
     }
 
-    public static void furnace(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult,
+    public static void furnace(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
             float cookingExperience, @NonNull String namespacedKey) {
         furnace(cookingSource, cookingResult, cookingExperience, 200, namespacedKey);
     }
 
-    public static void furnace(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult, int cookingTime,
-            @NonNull String namespacedKey) {
+    public static void furnace(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
+            int cookingTime, @NonNull String namespacedKey) {
         furnace(cookingSource, cookingResult, 0, cookingTime, namespacedKey);
     }
 
-    public static void furnace(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult,
+    public static void furnace(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
             @NonNull String namespacedKey) {
         furnace(cookingSource, cookingResult, 0, 200, namespacedKey);
     }
@@ -144,9 +107,9 @@ public class InGameRecipeBuilder {
     /**
      * 从配方添加高炉配方
      * 
-     * @param recipe {@link YaBlastFurnaceRecipe}高炉配方
+     * @param recipe {@link AdditionBlastFurnaceRecipe}高炉配方
      */
-    public static void addRecipe(YaBlastFurnaceRecipe yaBlastFurnaceRecipe) {
+    public static void addRecipe(AdditionBlastFurnaceRecipe yaBlastFurnaceRecipe) {
         blastFurnace(yaBlastFurnaceRecipe.getResult(), yaBlastFurnaceRecipe.getCookingSource(),
                 yaBlastFurnaceRecipe.getCookingExperience(), yaBlastFurnaceRecipe.getCookingTime(),
                 yaBlastFurnaceRecipe.getNamespacedKey());
@@ -161,25 +124,22 @@ public class InGameRecipeBuilder {
      * @param cookingTime       熔炼时间
      * @param namespacedKey     命名空间
      */
-    public static void blastFurnace(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult,
+    public static void blastFurnace(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
             float cookingExperience, int cookingTime, @NonNull String namespacedKey) {
-        NamespacedKey targetKey = new NamespacedKey(YaAddition.getInstance(), namespacedKey);
-        BlastingRecipe blastingRecipe = new BlastingRecipe(targetKey, cookingSource, cookingResult.getType(),
-                cookingExperience, cookingTime);
-        Bukkit.addRecipe(blastingRecipe);
+        这里什么也没有
     }
 
-    public static void blastFurnace(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult,
+    public static void blastFurnace(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
             float cookingExperience, @NonNull String namespacedKey) {
         blastFurnace(cookingSource, cookingResult, cookingExperience, 100, namespacedKey);
     }
 
-    public static void blastFurnace(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult, int cookingTime,
-            @NonNull String namespacedKey) {
+    public static void blastFurnace(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
+            int cookingTime, @NonNull String namespacedKey) {
         blastFurnace(cookingSource, cookingResult, 0, cookingTime, namespacedKey);
     }
 
-    public static void blastFurnace(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult,
+    public static void blastFurnace(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
             @NonNull String namespacedKey) {
         blastFurnace(cookingSource, cookingResult, 0, 100, namespacedKey);
     }
@@ -187,9 +147,9 @@ public class InGameRecipeBuilder {
     /**
      * 从配方添加烟熏炉配方
      * 
-     * @param recipe {@link YaSmokerRecipe}烟熏炉配方
+     * @param recipe {@link AdditionSmokerRecipe}烟熏炉配方
      */
-    public static void addRecipe(YaSmokerRecipe yaSmokerRecipe) {
+    public static void addRecipe(AdditionSmokerRecipe yaSmokerRecipe) {
         smoker(yaSmokerRecipe.getResult(), yaSmokerRecipe.getCookingSource(), yaSmokerRecipe.getCookingExperience(),
                 yaSmokerRecipe.getCookingTime(), yaSmokerRecipe.getNamespacedKey());
     }
@@ -203,25 +163,22 @@ public class InGameRecipeBuilder {
      * @param cookingTime       烹饪时间
      * @param namespacedKey     命名空间
      */
-    public static void smoker(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult,
+    public static void smoker(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
             float cookingExperience, int cookingTime, @NonNull String namespacedKey) {
-        NamespacedKey targetKey = new NamespacedKey(YaAddition.getInstance(), namespacedKey);
-        SmokingRecipe smokingRecipe = new SmokingRecipe(targetKey, cookingSource, cookingResult.getType(),
-                cookingExperience, cookingTime);
-        Bukkit.addRecipe(smokingRecipe);
+        这里什么也没有
     }
 
-    public static void smoker(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult,
+    public static void smoker(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
             float cookingExperience, @NonNull String namespacedKey) {
         smoker(cookingSource, cookingResult, cookingExperience, 100, namespacedKey);
     }
 
-    public static void smoker(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult, int cookingTime,
-            @NonNull String namespacedKey) {
+    public static void smoker(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
+            int cookingTime, @NonNull String namespacedKey) {
         smoker(cookingSource, cookingResult, 0, cookingTime, namespacedKey);
     }
 
-    public static void smoker(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult,
+    public static void smoker(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
             @NonNull String namespacedKey) {
         smoker(cookingSource, cookingResult, 0, 100, namespacedKey);
     }
@@ -229,9 +186,9 @@ public class InGameRecipeBuilder {
     /**
      * 从配方添加篝火配方
      * 
-     * @param recipe {@link YaCampfireRecipe}篝火配方
+     * @param recipe {@link AdditionCampfireRecipe}篝火配方
      */
-    public static void addRecipe(YaCampfireRecipe yaCampfireRecipe) {
+    public static void addRecipe(AdditionCampfireRecipe yaCampfireRecipe) {
         campfire(yaCampfireRecipe.getResult(), yaCampfireRecipe.getCookingSource(),
                 yaCampfireRecipe.getCookingExperience(), yaCampfireRecipe.getCookingTime(),
                 yaCampfireRecipe.getNamespacedKey());
@@ -246,25 +203,22 @@ public class InGameRecipeBuilder {
      * @param cookingTime       烹饪时间
      * @param namespacedKey     命名空间
      */
-    public static void campfire(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult,
+    public static void campfire(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
             float cookingExperience, int cookingTime, @NonNull String namespacedKey) {
-        NamespacedKey targetKey = new NamespacedKey(YaAddition.getInstance(), namespacedKey);
-        CampfireRecipe campfireRecipe = new CampfireRecipe(targetKey, cookingSource, cookingResult.getType(),
-                cookingExperience, cookingTime);
-        Bukkit.addRecipe(campfireRecipe);
+        这里什么也没有
     }
 
-    public static void campfire(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult,
+    public static void campfire(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
             float cookingExperience, @NonNull String namespacedKey) {
         campfire(cookingSource, cookingResult, cookingExperience, 100, namespacedKey);
     }
 
-    public static void campfire(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult, int cookingTime,
-            @NonNull String namespacedKey) {
+    public static void campfire(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
+            int cookingTime, @NonNull String namespacedKey) {
         campfire(cookingSource, cookingResult, 0, cookingTime, namespacedKey);
     }
 
-    public static void campfire(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult,
+    public static void campfire(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
             @NonNull String namespacedKey) {
         campfire(cookingSource, cookingResult, 0, 100, namespacedKey);
     }
@@ -272,9 +226,9 @@ public class InGameRecipeBuilder {
     /**
      * 从配方添加切石机配方
      * 
-     * @param recipe {@link YaStoneCutterRecipe}切石机配方
+     * @param recipe {@link AdditionStoneCutterRecipe}切石机配方
      */
-    public static void addRecipe(YaStoneCutterRecipe yaStoneCutterRecipe) {
+    public static void addRecipe(AdditionStoneCutterRecipe yaStoneCutterRecipe) {
         stoneCutter(yaStoneCutterRecipe.getCuttingSource(), yaStoneCutterRecipe.getResult(),
                 yaStoneCutterRecipe.getNamespacedKey());
     }
@@ -286,20 +240,17 @@ public class InGameRecipeBuilder {
      * @param cuttingResult 产物
      * @param namespacedKey 命名空间
      */
-    public static void stoneCutter(@NonNull ItemStack cuttingSource, @NonNull ItemStack cuttingResult,
+    public static void stoneCutter(@NonNull AdditionItemStack cuttingSource, @NonNull AdditionItemStack cuttingResult,
             @NonNull String namespacedKey) {
-        NamespacedKey targetKey = new NamespacedKey(YaAddition.getInstance(), namespacedKey);
-        StonecuttingRecipe stonecuttingRecipe = new StonecuttingRecipe(targetKey, cuttingResult,
-                cuttingSource.getType());
-        Bukkit.addRecipe(stonecuttingRecipe);
+        这里什么也没有
     }
 
     /**
      * 从配方添加锻造台配方
      * 
-     * @param recipe {@link YaSmithingTableRecipe}锻造台配方
+     * @param recipe {@link AdditionSmithingTableRecipe}锻造台配方
      */
-    public static void addRecipe(YaSmithingTableRecipe yaSmithingTableRecipe) {
+    public static void addRecipe(AdditionSmithingTableRecipe yaSmithingTableRecipe) {
         smithingTable(yaSmithingTableRecipe.getSmithingBase(), yaSmithingTableRecipe.getSmithingAddition(),
                 yaSmithingTableRecipe.getResult(), yaSmithingTableRecipe.getNamespacedKey());
     }
@@ -312,13 +263,9 @@ public class InGameRecipeBuilder {
      * @param smithingResult   产物
      * @param namespacedKey    命名空间
      */
-    public static void smithingTable(@NonNull ItemStack smithingBase, @NonNull ItemStack smithingAddition,
-            @NonNull ItemStack smithingResult, @NonNull String namespacedKey) {
-        NamespacedKey targetKey = new NamespacedKey(YaAddition.getInstance(), namespacedKey);
-        SmithingRecipe smithingRecipe = new SmithingRecipe(targetKey, smithingResult,
-                new RecipeChoice.MaterialChoice(smithingBase.getType()),
-                new RecipeChoice.MaterialChoice(smithingAddition.getType()));
-        Bukkit.addRecipe(smithingRecipe);
+    public static void smithingTable(@NonNull AdditionItemStack smithingBase, @NonNull AdditionItemStack smithingAddition,
+            @NonNull AdditionItemStack smithingResult, @NonNull String namespacedKey) {
+        这里什么也没有
     }
 
     /**
@@ -330,7 +277,7 @@ public class InGameRecipeBuilder {
         if (recipes != null) {
 
             for (String recipe : recipes) {
-                YaShapedCraftRecipe yaShapedCraftRecipe = new YaShapedCraftRecipe();
+                AdditionShapedCraftRecipe yaShapedCraftRecipe = new AdditionShapedCraftRecipe();
 
                 try {
                     yaShapedCraftRecipe.load(recipe);
@@ -347,7 +294,7 @@ public class InGameRecipeBuilder {
         if (recipes != null) {
 
             for (String recipe : recipes) {
-                YaShapelessCraftRecipe yaShapelessCraftRecipe = new YaShapelessCraftRecipe();
+                AdditionShapelessCraftRecipe yaShapelessCraftRecipe = new AdditionShapelessCraftRecipe();
 
                 try {
                     yaShapelessCraftRecipe.load(recipe);
@@ -364,7 +311,7 @@ public class InGameRecipeBuilder {
         if (recipes != null) {
 
             for (String recipe : recipes) {
-                YaFurnaceRecipe yaFurnaceRecipe = new YaFurnaceRecipe();
+                AdditionFurnaceRecipe yaFurnaceRecipe = new AdditionFurnaceRecipe();
 
                 try {
                     yaFurnaceRecipe.load(recipe);
@@ -381,7 +328,7 @@ public class InGameRecipeBuilder {
         if (recipes != null) {
 
             for (String recipe : recipes) {
-                YaSmokerRecipe yaSmokerRecipe = new YaSmokerRecipe();
+                AdditionSmokerRecipe yaSmokerRecipe = new AdditionSmokerRecipe();
 
                 try {
                     yaSmokerRecipe.load(recipe);
@@ -398,7 +345,7 @@ public class InGameRecipeBuilder {
         if (recipes != null) {
 
             for (String recipe : recipes) {
-                YaBlastFurnaceRecipe yabBlastFurnaceRecipe = new YaBlastFurnaceRecipe();
+                AdditionBlastFurnaceRecipe yabBlastFurnaceRecipe = new AdditionBlastFurnaceRecipe();
 
                 try {
                     yabBlastFurnaceRecipe.load(recipe);
@@ -415,7 +362,7 @@ public class InGameRecipeBuilder {
         if (recipes != null) {
 
             for (String recipe : recipes) {
-                YaCampfireRecipe yaCampfireRecipe = new YaCampfireRecipe();
+                AdditionCampfireRecipe yaCampfireRecipe = new AdditionCampfireRecipe();
 
                 try {
                     yaCampfireRecipe.load(recipe);
@@ -432,7 +379,7 @@ public class InGameRecipeBuilder {
         if (recipes != null) {
 
             for (String recipe : recipes) {
-                YaStoneCutterRecipe yaStoneCutterRecipe = new YaStoneCutterRecipe();
+                AdditionStoneCutterRecipe yaStoneCutterRecipe = new AdditionStoneCutterRecipe();
 
                 try {
                     yaStoneCutterRecipe.load(recipe);
@@ -449,7 +396,7 @@ public class InGameRecipeBuilder {
         if (recipes != null) {
 
             for (String recipe : recipes) {
-                YaSmithingTableRecipe yaSmithingTableRecipe = new YaSmithingTableRecipe();
+                AdditionSmithingTableRecipe yaSmithingTableRecipe = new AdditionSmithingTableRecipe();
 
                 try {
                     yaSmithingTableRecipe.load(recipe);

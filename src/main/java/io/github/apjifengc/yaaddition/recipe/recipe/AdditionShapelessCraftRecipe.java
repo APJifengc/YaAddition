@@ -1,20 +1,19 @@
 package io.github.apjifengc.yaaddition.recipe.recipe;
 
+import io.github.apjifengc.yaaddition.addition.AdditionItemStack;
 import io.github.apjifengc.yaaddition.recipe.util.RecipeType;
-
-import org.bukkit.inventory.ItemStack;
 
 import lombok.NonNull;
 
 /**
  * 无序合成
  */
-public class YaShapelessCraftRecipe extends YaCraftingRecipe {
+public class AdditionShapelessCraftRecipe extends AdditionCraftingRecipe {
 
     /**
      * 新建空的无序合成
      */
-    public YaShapelessCraftRecipe() {
+    public AdditionShapelessCraftRecipe() {
         super(RecipeType.SHAPELESS_CRAFT);
     }
 
@@ -24,7 +23,7 @@ public class YaShapelessCraftRecipe extends YaCraftingRecipe {
      * @param craftingSource 材料，最多九堆
      * @param craftingResult 产品
      */
-    public YaShapelessCraftRecipe(@NonNull ItemStack[] craftingSource, @NonNull ItemStack craftingResult) {
+    public AdditionShapelessCraftRecipe(@NonNull AdditionItemStack[] craftingSource, @NonNull AdditionItemStack craftingResult) {
         super(craftingSource, craftingResult, RecipeType.SHAPELESS_CRAFT);
     }
 

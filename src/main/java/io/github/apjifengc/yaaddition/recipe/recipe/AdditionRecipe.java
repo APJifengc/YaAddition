@@ -6,12 +6,12 @@ import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
 import java.util.Map;
 
+import io.github.apjifengc.yaaddition.addition.AdditionItemStack;
 import io.github.apjifengc.yaaddition.recipe.excption.IncompleteRecipeException;
 import io.github.apjifengc.yaaddition.recipe.excption.RecipeException;
 import io.github.apjifengc.yaaddition.recipe.excption.WrongRecipeTypeException;
 import io.github.apjifengc.yaaddition.recipe.util.RecipeType;
 
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.io.BukkitObjectOutputStream;
 
 import lombok.Getter;
@@ -21,7 +21,7 @@ import lombok.Setter;
 /**
  * 所有配方的父类
  */
-public abstract class YaRecipe {
+public abstract class AdditionRecipe {
 
     @Getter
     @Setter
@@ -30,14 +30,14 @@ public abstract class YaRecipe {
     @Setter
     protected String namespacedKey;
     @Getter
-    protected ItemStack result;
+    protected AdditionItemStack result;
 
     /**
      * 设置产品并生成命名空间
      * 
      * @param result 产品
      */
-    public void setResult(@NonNull ItemStack result) {
+    public void setResult(@NonNull AdditionItemStack result) {
         this.result = result;
         namespacedKeyGen(this.result, this.type);
     }
@@ -126,9 +126,9 @@ public abstract class YaRecipe {
      * @param result 产品
      * @param type   配方种类
      */
-    protected void namespacedKeyGen(@NonNull ItemStack result, @NonNull RecipeType type) {
+    protected void namespacedKeyGen(@NonNull AdditionItemStack result, @NonNull RecipeType type) {
         // 生成NamespacedKey
-        String recipeName = result.getType().name() + "_" + type.getType() + "_";
+        String recipeName = result.getMaterial().getName() + "_" + type.getType() + "_";
 
         for (int i = 0;; i++) {
             this.namespacedKey = recipeName + i;
