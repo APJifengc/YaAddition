@@ -5,11 +5,8 @@ import com.rabbitown.yalib.module.command.SimpleCommandRemote;
 import com.rabbitown.yalib.module.command.annotation.*;
 import io.github.apjifengc.yaaddition.YaAddition;
 import io.github.apjifengc.yaaddition.addition.AdditionItemStack;
-import io.github.apjifengc.yaaddition.addition.AdditionMaterial;
 import io.github.apjifengc.yaaddition.core.state.TripWireState;
-import io.github.apjifengc.yaaddition.util.Data;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Arrays;
 
