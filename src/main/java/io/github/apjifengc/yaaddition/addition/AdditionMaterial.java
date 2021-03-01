@@ -5,11 +5,10 @@ import io.github.apjifengc.yaaddition.core.state.NoteBlockState;
 import io.github.apjifengc.yaaddition.core.state.State;
 import io.github.apjifengc.yaaddition.core.state.TripWireState;
 import io.github.apjifengc.yaaddition.exception.MaterialAlreadyRegisteredException;
-import io.github.apjifengc.yaresourcepackmanager.component.Model;
-import io.github.apjifengc.yaresourcepackmanager.component.Texture;
+import io.github.apjifengc.yaresourcepackmanager.component.model.Model;
+import io.github.apjifengc.yaresourcepackmanager.component.texture.Texture;
 import lombok.Getter;
 import org.bukkit.Material;
-import org.bukkit.block.Block;
 
 import java.util.HashMap;
 import java.util.List;
