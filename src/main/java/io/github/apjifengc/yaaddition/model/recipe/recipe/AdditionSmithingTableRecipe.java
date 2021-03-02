@@ -1,5 +1,6 @@
 package io.github.apjifengc.yaaddition.model.recipe.recipe;
 
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.io.BukkitObjectInputStream;
 
 import lombok.Getter;
@@ -11,7 +12,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
 
-import io.github.apjifengc.yaaddition.addition.AdditionItemStack;
 import io.github.apjifengc.yaaddition.exception.RecipeException;
 import io.github.apjifengc.yaaddition.model.recipe.util.RecipeType;
 
@@ -22,10 +22,10 @@ public class AdditionSmithingTableRecipe extends AdditionRecipe {
 
     @Getter
     @Setter
-    private AdditionItemStack smithingBase;
+    private ItemStack smithingBase;
     @Getter
     @Setter
-    private AdditionItemStack smithingAddition;
+    private ItemStack smithingAddition;
 
     /**
      * 新建空的锻造配方
@@ -41,8 +41,8 @@ public class AdditionSmithingTableRecipe extends AdditionRecipe {
      * @param smithingAddition 附加物品
      * @param smithingResult   产品
      */
-    public AdditionSmithingTableRecipe(@NonNull AdditionItemStack smithingBase, @NonNull AdditionItemStack smithingAddition,
-            @NonNull AdditionItemStack smithingResult) {
+    public AdditionSmithingTableRecipe(@NonNull ItemStack smithingBase, @NonNull ItemStack smithingAddition,
+            @NonNull ItemStack smithingResult) {
         this.smithingBase = smithingBase;
         this.smithingAddition = smithingAddition;
         this.result = smithingResult;
@@ -72,9 +72,9 @@ public class AdditionSmithingTableRecipe extends AdditionRecipe {
 
             if (readMap instanceof HashMap) {
                 map.putAll((HashMap) readMap);
-                setResult((AdditionItemStack) map.get("result"));
-                this.smithingBase = (AdditionItemStack) map.get("smithingBase");
-                this.smithingAddition = (AdditionItemStack) map.get("smithingAddition");
+                setResult((ItemStack) map.get("result"));
+                this.smithingBase = (ItemStack) map.get("smithingBase");
+                this.smithingAddition = (ItemStack) map.get("smithingAddition");
                 this.type = (RecipeType) map.get("type");
             }
         }

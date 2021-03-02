@@ -1,5 +1,6 @@
 package io.github.apjifengc.yaaddition.model.recipe.recipe;
 
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.io.BukkitObjectInputStream;
 
 import lombok.Getter;
@@ -11,7 +12,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
 
-import io.github.apjifengc.yaaddition.addition.AdditionItemStack;
 import io.github.apjifengc.yaaddition.exception.RecipeException;
 import io.github.apjifengc.yaaddition.model.recipe.util.RecipeType;
 
@@ -22,10 +22,10 @@ public class AdditionBrewingStandRecipe extends AdditionRecipe {
 
     @Getter
     @Setter
-    private AdditionItemStack ingredient;
+    private ItemStack ingredient;
     @Getter
     @Setter
-    private AdditionItemStack potion;
+    private ItemStack potion;
 
     /**
      * 新建空的酿造配方
@@ -37,8 +37,8 @@ public class AdditionBrewingStandRecipe extends AdditionRecipe {
     /**
      * 新建酿造配方
      */
-    public AdditionBrewingStandRecipe(@NonNull AdditionItemStack ingredient, @NonNull AdditionItemStack potion,
-            @NonNull AdditionItemStack brewingResult) {
+    public AdditionBrewingStandRecipe(@NonNull ItemStack ingredient, @NonNull ItemStack potion,
+            @NonNull ItemStack brewingResult) {
         this.ingredient = ingredient;
         this.potion = potion;
         this.result = brewingResult;
@@ -68,9 +68,9 @@ public class AdditionBrewingStandRecipe extends AdditionRecipe {
 
             if (readMap instanceof HashMap) {
                 map.putAll((HashMap) readMap);
-                setResult((AdditionItemStack) map.get("result"));
-                this.ingredient = (AdditionItemStack) map.get("ingredient");
-                this.potion = (AdditionItemStack) map.get("potion");
+                setResult((ItemStack) map.get("result"));
+                this.ingredient = (ItemStack) map.get("ingredient");
+                this.potion = (ItemStack) map.get("potion");
                 this.type = (RecipeType) map.get("type");
             }
         }

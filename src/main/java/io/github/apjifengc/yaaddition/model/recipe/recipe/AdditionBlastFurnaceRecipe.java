@@ -1,7 +1,8 @@
 
 package io.github.apjifengc.yaaddition.model.recipe.recipe;
 
-import io.github.apjifengc.yaaddition.addition.AdditionItemStack;
+import org.bukkit.inventory.ItemStack;
+
 import io.github.apjifengc.yaaddition.model.recipe.util.RecipeType;
 
 import lombok.NonNull;
@@ -25,21 +26,21 @@ public class AdditionBlastFurnaceRecipe extends AdditionCookingRecipe {
      * @param cookingExperience 经验
      * @param cookingTime       熔炼时间
      */
-    public AdditionBlastFurnaceRecipe(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
+    public AdditionBlastFurnaceRecipe(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult,
             float cookingExperience, int cookingTime) {
         super(cookingSource, cookingResult, cookingExperience, cookingTime, RecipeType.BLAST_FURNACE);
     }
 
-    public AdditionBlastFurnaceRecipe(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
+    public AdditionBlastFurnaceRecipe(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult,
             float cookingExperience) {
         super(cookingSource, cookingResult, cookingExperience, 100, RecipeType.BLAST_FURNACE);
     }
 
-    public AdditionBlastFurnaceRecipe(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult, int cookingTime) {
+    public AdditionBlastFurnaceRecipe(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult, int cookingTime) {
         super(cookingSource, cookingResult, 0, cookingTime, RecipeType.BLAST_FURNACE);
     }
 
-    public AdditionBlastFurnaceRecipe(@NonNull AdditionItemStack cookingResult, @NonNull AdditionItemStack cookingSource) {
+    public AdditionBlastFurnaceRecipe(@NonNull ItemStack cookingResult, @NonNull ItemStack cookingSource) {
         super(cookingSource, cookingResult, 0, 100, RecipeType.BLAST_FURNACE);
     }
 

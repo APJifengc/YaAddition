@@ -6,12 +6,12 @@ import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
 import java.util.Map;
 
-import io.github.apjifengc.yaaddition.addition.AdditionItemStack;
 import io.github.apjifengc.yaaddition.exception.IncompleteRecipeException;
 import io.github.apjifengc.yaaddition.exception.RecipeException;
 import io.github.apjifengc.yaaddition.exception.WrongRecipeTypeException;
 import io.github.apjifengc.yaaddition.model.recipe.util.RecipeType;
 
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.io.BukkitObjectOutputStream;
 
 import lombok.Getter;
@@ -30,14 +30,14 @@ public abstract class AdditionRecipe {
     @Setter
     protected String namespacedKey;
     @Getter
-    protected AdditionItemStack result;
+    protected ItemStack result;
 
     /**
      * 设置产品并生成命名空间
      * 
      * @param result 产品
      */
-    public void setResult(@NonNull AdditionItemStack result) {
+    public void setResult(@NonNull ItemStack result) {
         this.result = result;
         namespacedKeyGen(this.result, this.type);
     }
@@ -126,9 +126,9 @@ public abstract class AdditionRecipe {
      * @param result 产品
      * @param type   配方种类
      */
-    protected void namespacedKeyGen(@NonNull AdditionItemStack result, @NonNull RecipeType type) {
+    protected void namespacedKeyGen(@NonNull ItemStack result, @NonNull RecipeType type) {
         // 生成NamespacedKey
-        String recipeName = result.getMaterial().getName() + "_" + type.getType() + "_";
+        String recipeName = result.getType().name() + "_" + type.getType() + "_";
 
         for (int i = 0;; i++) {
             this.namespacedKey = recipeName + i;

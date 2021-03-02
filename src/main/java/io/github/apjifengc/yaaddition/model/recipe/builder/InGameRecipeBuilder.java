@@ -2,10 +2,23 @@
 package io.github.apjifengc.yaaddition.model.recipe.builder;
 
 import java.io.File;
+import java.util.EnumMap;
+import java.util.HashMap;
+import java.util.Map;
 
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
+import org.bukkit.inventory.FurnaceRecipe;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.ShapedRecipe;
+import org.bukkit.inventory.ShapelessRecipe;
+
+import io.github.apjifengc.yaaddition.YaAddition;
 import io.github.apjifengc.yaaddition.addition.AdditionItemStack;
 import io.github.apjifengc.yaaddition.model.recipe.recipe.AdditionBlastFurnaceRecipe;
 import io.github.apjifengc.yaaddition.model.recipe.recipe.AdditionCampfireRecipe;
+import io.github.apjifengc.yaaddition.model.recipe.recipe.AdditionCookingRecipe;
 import io.github.apjifengc.yaaddition.model.recipe.recipe.AdditionFurnaceRecipe;
 import io.github.apjifengc.yaaddition.model.recipe.recipe.AdditionShapedCraftRecipe;
 import io.github.apjifengc.yaaddition.model.recipe.recipe.AdditionShapelessCraftRecipe;
@@ -21,14 +34,42 @@ import lombok.NonNull;
  */
 public class InGameRecipeBuilder {
 
+    private static final Map<Material, AdditionCookingRecipe> furnaceRecipes = new EnumMap<>(Material.class);
+
+    private static final char[] alphabet = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I' };
+
     /**
      * 从配方添加有序合成
      * 
-     * @param recipe {@link AdditionShapedCraftRecipe}有序合成
+     * @param yaShapedCraftRecipe {@link AdditionShapedCraftRecipe}有序合成
      */
-    public static void addRecipe(AdditionShapedCraftRecipe yaShapedCraftRecipeya) {
-        shaped(yaShapedCraftRecipeya.getCraftingSource(), yaShapedCraftRecipeya.getResult(),
-                yaShapedCraftRecipeya.getNamespacedKey());
+    public static void addRecipe(AdditionShapedCraftRecipe yaShapedCraftRecipe) {
+        shaped(yaShapedCraftRecipe.getCraftingSource(), yaShapedCraftRecipe.getResult(),
+                yaShapedCraftRecipe.getNamespacedKey());
+    }
+
+    /**
+     * 手动添加有序合成
+     * 
+     * @param craftingSource 材料
+     * @param craftingResult 产物
+     * @param namespacedKey  命名空间
+     * @deprecated
+     */
+    @Deprecated
+    public static void shaped(@NonNull AdditionItemStack[] craftingSource, @NonNull AdditionItemStack craftingResult,
+            @NonNull String namespacedKey) {
+        NamespacedKey targetKey = new NamespacedKey(YaAddition.getInstance(), namespacedKey);
+        ShapedRecipe targetRecipe = new ShapedRecipe(targetKey, craftingResult.asBukkitCopy());
+        targetRecipe.shape("ABC", "DEF", "GHI");
+
+        for (int i = 0; i < 9; i++) {
+            if (craftingSource[i] != null) {
+                targetRecipe.setIngredient(alphabet[i], craftingSource[i].getMaterial().getBaseMaterial());
+            }
+        }
+
+        Bukkit.addRecipe(targetRecipe);
     }
 
     /**
@@ -38,15 +79,25 @@ public class InGameRecipeBuilder {
      * @param craftingResult 产物
      * @param namespacedKey  命名空间
      */
-    public static void shaped(@NonNull AdditionItemStack[] craftingSource, @NonNull AdditionItemStack craftingResult,
+    public static void shaped(@NonNull ItemStack[] craftingSource, @NonNull ItemStack craftingResult,
             @NonNull String namespacedKey) {
-        
+        NamespacedKey targetKey = new NamespacedKey(YaAddition.getInstance(), namespacedKey);
+        ShapedRecipe targetRecipe = new ShapedRecipe(targetKey, craftingResult);
+        targetRecipe.shape("ABC", "DEF", "GHI");
+
+        for (int i = 0; i < 9; i++) {
+            if (craftingSource[i] != null) {
+                targetRecipe.setIngredient(alphabet[i], craftingSource[i].getType());
+            }
+        }
+
+        Bukkit.addRecipe(targetRecipe);
     }
 
     /**
      * 从配方添加无序合成
      * 
-     * @param recipe {@link AdditionShapelessCraftRecipe}无序合成
+     * @param yaShapelessCraftRecipe {@link AdditionShapelessCraftRecipe}无序合成
      */
     public static void addRecipe(AdditionShapelessCraftRecipe yaShapelessCraftRecipe) {
         shapeless(yaShapelessCraftRecipe.getCraftingSource(), yaShapelessCraftRecipe.getResult(),
@@ -59,20 +110,72 @@ public class InGameRecipeBuilder {
      * @param craftingSource 材料
      * @param craftingResult 成品
      * @param namespacedKey  命名空间
+     * @deprecated
      */
+    @Deprecated
     public static void shapeless(@NonNull AdditionItemStack[] craftingSource, @NonNull AdditionItemStack craftingResult,
             @NonNull String namespacedKey) {
-        
+        NamespacedKey targetKey = new NamespacedKey(YaAddition.getInstance(), namespacedKey);
+        ShapelessRecipe targetRecipe = new ShapelessRecipe(targetKey, craftingResult.asBukkitCopy());
+
+        for (int i = 0; i < 9; i++) {
+            if (craftingSource[i] != null) {
+                targetRecipe.addIngredient(craftingSource[i].getMaterial().getBaseMaterial());
+            }
+        }
+
+        Bukkit.addRecipe(targetRecipe);
+    }
+
+    /**
+     * 手动添加无序合成
+     * 
+     * @param craftingSource 材料
+     * @param craftingResult 成品
+     * @param namespacedKey  命名空间
+     */
+    public static void shapeless(@NonNull ItemStack[] craftingSource, @NonNull ItemStack craftingResult,
+            @NonNull String namespacedKey) {
+        NamespacedKey targetKey = new NamespacedKey(YaAddition.getInstance(), namespacedKey);
+        ShapelessRecipe targetRecipe = new ShapelessRecipe(targetKey, craftingResult);
+
+        for (int i = 0; i < 9; i++) {
+            if (craftingSource[i] != null) {
+                targetRecipe.addIngredient(craftingSource[i].getType());
+            }
+        }
+
+        Bukkit.addRecipe(targetRecipe);
     }
 
     /**
      * 从配方添加熔炉配方
      * 
-     * @param recipe {@link AdditionFurnaceRecipe}熔炉配方
+     * @param yaFurnaceRecipe {@link AdditionFurnaceRecipe}熔炉配方
      */
     public static void addRecipe(AdditionFurnaceRecipe yaFurnaceRecipe) {
-        furnace(yaFurnaceRecipe.getResult(), yaFurnaceRecipe.getCookingSource(), yaFurnaceRecipe.getCookingExperience(),
-                yaFurnaceRecipe.getCookingTime(), yaFurnaceRecipe.getNamespacedKey());
+        furnace(yaFurnaceRecipe, yaFurnaceRecipe.getResult(), yaFurnaceRecipe.getCookingSource(),
+                yaFurnaceRecipe.getCookingExperience(), yaFurnaceRecipe.getCookingTime(),
+                yaFurnaceRecipe.getNamespacedKey());
+    }
+
+    /**
+     * 手动添加熔炉配方
+     * 
+     * @param yaFurnaceRecipe   {@link AdditionFurnaceRecipe}熔炉配方
+     * @param cookingSource     材料
+     * @param cookingResult     产物
+     * @param cookingExperience 获得的经验
+     * @param cookingTime       烧制时间
+     * @param namespacedKey     命名空间
+     */
+    public static void furnace(AdditionFurnaceRecipe yaFurnaceRecipe, @NonNull ItemStack cookingSource,
+            @NonNull ItemStack cookingResult, float cookingExperience, int cookingTime, @NonNull String namespacedKey) {
+        NamespacedKey targetKey = new NamespacedKey(YaAddition.getInstance(), namespacedKey);
+        FurnaceRecipe furnaceRecipe = new FurnaceRecipe(targetKey, cookingResult, cookingSource.getType(),
+                cookingExperience, cookingTime);
+        Bukkit.addRecipe(furnaceRecipe);
+        furnaceRecipes.put(yaFurnaceRecipe.getCookingSource().getType(), yaFurnaceRecipe);
     }
 
     /**
@@ -84,22 +187,27 @@ public class InGameRecipeBuilder {
      * @param cookingTime       烧制时间
      * @param namespacedKey     命名空间
      */
-    public static void furnace(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
+    public static void furnace(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult,
             float cookingExperience, int cookingTime, @NonNull String namespacedKey) {
-        
+        NamespacedKey targetKey = new NamespacedKey(YaAddition.getInstance(), namespacedKey);
+        FurnaceRecipe furnaceRecipe = new FurnaceRecipe(targetKey, cookingResult, cookingSource.getType(),
+                cookingExperience, cookingTime);
+        Bukkit.addRecipe(furnaceRecipe);
+        furnaceRecipes.put(cookingSource.getType(),
+                new AdditionFurnaceRecipe(cookingSource, cookingResult, cookingExperience, cookingTime));
     }
 
-    public static void furnace(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
+    public static void furnace(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult,
             float cookingExperience, @NonNull String namespacedKey) {
         furnace(cookingSource, cookingResult, cookingExperience, 200, namespacedKey);
     }
 
-    public static void furnace(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
-            int cookingTime, @NonNull String namespacedKey) {
+    public static void furnace(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult, int cookingTime,
+            @NonNull String namespacedKey) {
         furnace(cookingSource, cookingResult, 0, cookingTime, namespacedKey);
     }
 
-    public static void furnace(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
+    public static void furnace(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult,
             @NonNull String namespacedKey) {
         furnace(cookingSource, cookingResult, 0, 200, namespacedKey);
     }
@@ -124,22 +232,22 @@ public class InGameRecipeBuilder {
      * @param cookingTime       熔炼时间
      * @param namespacedKey     命名空间
      */
-    public static void blastFurnace(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
+    public static void blastFurnace(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult,
             float cookingExperience, int cookingTime, @NonNull String namespacedKey) {
-        
+
     }
 
-    public static void blastFurnace(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
+    public static void blastFurnace(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult,
             float cookingExperience, @NonNull String namespacedKey) {
         blastFurnace(cookingSource, cookingResult, cookingExperience, 100, namespacedKey);
     }
 
-    public static void blastFurnace(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
-            int cookingTime, @NonNull String namespacedKey) {
+    public static void blastFurnace(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult, int cookingTime,
+            @NonNull String namespacedKey) {
         blastFurnace(cookingSource, cookingResult, 0, cookingTime, namespacedKey);
     }
 
-    public static void blastFurnace(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
+    public static void blastFurnace(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult,
             @NonNull String namespacedKey) {
         blastFurnace(cookingSource, cookingResult, 0, 100, namespacedKey);
     }
@@ -163,22 +271,22 @@ public class InGameRecipeBuilder {
      * @param cookingTime       烹饪时间
      * @param namespacedKey     命名空间
      */
-    public static void smoker(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
+    public static void smoker(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult,
             float cookingExperience, int cookingTime, @NonNull String namespacedKey) {
-        
+
     }
 
-    public static void smoker(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
+    public static void smoker(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult,
             float cookingExperience, @NonNull String namespacedKey) {
         smoker(cookingSource, cookingResult, cookingExperience, 100, namespacedKey);
     }
 
-    public static void smoker(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
-            int cookingTime, @NonNull String namespacedKey) {
+    public static void smoker(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult, int cookingTime,
+            @NonNull String namespacedKey) {
         smoker(cookingSource, cookingResult, 0, cookingTime, namespacedKey);
     }
 
-    public static void smoker(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
+    public static void smoker(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult,
             @NonNull String namespacedKey) {
         smoker(cookingSource, cookingResult, 0, 100, namespacedKey);
     }
@@ -203,22 +311,22 @@ public class InGameRecipeBuilder {
      * @param cookingTime       烹饪时间
      * @param namespacedKey     命名空间
      */
-    public static void campfire(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
+    public static void campfire(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult,
             float cookingExperience, int cookingTime, @NonNull String namespacedKey) {
-        
+
     }
 
-    public static void campfire(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
+    public static void campfire(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult,
             float cookingExperience, @NonNull String namespacedKey) {
         campfire(cookingSource, cookingResult, cookingExperience, 100, namespacedKey);
     }
 
-    public static void campfire(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
-            int cookingTime, @NonNull String namespacedKey) {
+    public static void campfire(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult, int cookingTime,
+            @NonNull String namespacedKey) {
         campfire(cookingSource, cookingResult, 0, cookingTime, namespacedKey);
     }
 
-    public static void campfire(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
+    public static void campfire(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult,
             @NonNull String namespacedKey) {
         campfire(cookingSource, cookingResult, 0, 100, namespacedKey);
     }
@@ -240,9 +348,9 @@ public class InGameRecipeBuilder {
      * @param cuttingResult 产物
      * @param namespacedKey 命名空间
      */
-    public static void stoneCutter(@NonNull AdditionItemStack cuttingSource, @NonNull AdditionItemStack cuttingResult,
+    public static void stoneCutter(@NonNull ItemStack cuttingSource, @NonNull ItemStack cuttingResult,
             @NonNull String namespacedKey) {
-        
+
     }
 
     /**
@@ -263,9 +371,9 @@ public class InGameRecipeBuilder {
      * @param smithingResult   产物
      * @param namespacedKey    命名空间
      */
-    public static void smithingTable(@NonNull AdditionItemStack smithingBase, @NonNull AdditionItemStack smithingAddition,
-            @NonNull AdditionItemStack smithingResult, @NonNull String namespacedKey) {
-        
+    public static void smithingTable(@NonNull ItemStack smithingBase, @NonNull ItemStack smithingAddition,
+            @NonNull ItemStack smithingResult, @NonNull String namespacedKey) {
+
     }
 
     /**

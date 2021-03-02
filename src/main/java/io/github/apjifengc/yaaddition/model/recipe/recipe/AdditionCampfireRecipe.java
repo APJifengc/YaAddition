@@ -1,7 +1,8 @@
 
 package io.github.apjifengc.yaaddition.model.recipe.recipe;
 
-import io.github.apjifengc.yaaddition.addition.AdditionItemStack;
+import org.bukkit.inventory.ItemStack;
+
 import io.github.apjifengc.yaaddition.model.recipe.util.RecipeType;
 
 import lombok.NonNull;
@@ -25,21 +26,21 @@ public class AdditionCampfireRecipe extends AdditionCookingRecipe {
      * @param cookingExperience 经验
      * @param cookingTime       烹饪时间
      */
-    public AdditionCampfireRecipe(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult, float cookingExperience,
+    public AdditionCampfireRecipe(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult, float cookingExperience,
             int cookingTime) {
         super(cookingSource, cookingResult, cookingExperience, cookingTime, RecipeType.CAMPFIRE);
     }
 
-    public AdditionCampfireRecipe(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
+    public AdditionCampfireRecipe(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult,
             float cookingExperience) {
         super(cookingSource, cookingResult, cookingExperience, 200, RecipeType.CAMPFIRE);
     }
 
-    public AdditionCampfireRecipe(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult, int cookingTime) {
+    public AdditionCampfireRecipe(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult, int cookingTime) {
         super(cookingSource, cookingResult, 0, cookingTime, RecipeType.CAMPFIRE);
     }
 
-    public AdditionCampfireRecipe(@NonNull AdditionItemStack cookingResult, @NonNull AdditionItemStack cookingSource) {
+    public AdditionCampfireRecipe(@NonNull ItemStack cookingResult, @NonNull ItemStack cookingSource) {
         super(cookingSource, cookingResult, 0, 200, RecipeType.CAMPFIRE);
     }
 

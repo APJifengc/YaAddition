@@ -1,6 +1,7 @@
 package io.github.apjifengc.yaaddition.model.recipe.recipe;
 
-import io.github.apjifengc.yaaddition.addition.AdditionItemStack;
+import org.bukkit.inventory.ItemStack;
+
 import io.github.apjifengc.yaaddition.model.recipe.util.RecipeType;
 
 import lombok.NonNull;
@@ -22,7 +23,7 @@ public class AdditionShapedCraftRecipe extends AdditionCraftingRecipe {
      * @param craftingSource 材料，按九宫格从左到右从上到下的顺序，最多九堆
      * @param craftingResult 产品
      */
-    public AdditionShapedCraftRecipe(@NonNull AdditionItemStack[] craftingSource, @NonNull AdditionItemStack craftingResult) {
+    public AdditionShapedCraftRecipe(@NonNull ItemStack[] craftingSource, @NonNull ItemStack craftingResult) {
         super(craftingSource, craftingResult, RecipeType.SHAPED_CRAFT);
     }
 

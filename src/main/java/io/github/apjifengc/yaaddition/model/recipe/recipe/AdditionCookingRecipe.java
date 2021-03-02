@@ -1,5 +1,6 @@
 package io.github.apjifengc.yaaddition.model.recipe.recipe;
 
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.io.BukkitObjectInputStream;
 
 import lombok.Getter;
@@ -11,7 +12,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
 
-import io.github.apjifengc.yaaddition.addition.AdditionItemStack;
 import io.github.apjifengc.yaaddition.exception.RecipeException;
 import io.github.apjifengc.yaaddition.model.recipe.util.RecipeType;
 
@@ -22,7 +22,7 @@ public abstract class AdditionCookingRecipe extends AdditionRecipe {
 
     @Getter
     @Setter
-    protected AdditionItemStack cookingSource;
+    protected ItemStack cookingSource;
     @Getter
     @Setter
     protected float cookingExperience = 0;
@@ -34,7 +34,7 @@ public abstract class AdditionCookingRecipe extends AdditionRecipe {
         this.type = type;
     }
 
-    protected AdditionCookingRecipe(AdditionItemStack cookingSource, AdditionItemStack cookingResult, float cookingExperience,
+    protected AdditionCookingRecipe(ItemStack cookingSource, ItemStack cookingResult, float cookingExperience,
             int cookingTime, RecipeType type) {
         this.cookingSource = cookingSource;
         setResult(cookingResult);
@@ -68,8 +68,8 @@ public abstract class AdditionCookingRecipe extends AdditionRecipe {
                 map.putAll((HashMap) readMap);
                 this.cookingExperience = (float) map.get("cookingExperience");
                 this.cookingTime = (int) map.get("cookingTime");
-                this.cookingSource = (AdditionItemStack) map.get("cookingSource");
-                setResult((AdditionItemStack) map.get("result"));
+                this.cookingSource = (ItemStack) map.get("cookingSource");
+                setResult((ItemStack) map.get("result"));
                 this.type = (RecipeType) map.get("type");
             }
         }

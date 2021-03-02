@@ -1,7 +1,8 @@
 
 package io.github.apjifengc.yaaddition.model.recipe.recipe;
 
-import io.github.apjifengc.yaaddition.addition.AdditionItemStack;
+import org.bukkit.inventory.ItemStack;
+
 import io.github.apjifengc.yaaddition.model.recipe.util.RecipeType;
 
 import lombok.NonNull;
@@ -25,20 +26,20 @@ public class AdditionSmokerRecipe extends AdditionCookingRecipe {
      * @param cookingExperience 经验
      * @param cookingTime       烹饪时间
      */
-    public AdditionSmokerRecipe(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult, float cookingExperience,
+    public AdditionSmokerRecipe(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult, float cookingExperience,
             int cookingTime) {
         super(cookingResult, cookingSource, cookingExperience, cookingTime, RecipeType.SMOKER);
     }
 
-    public AdditionSmokerRecipe(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult, float cookingExperience) {
+    public AdditionSmokerRecipe(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult, float cookingExperience) {
         super(cookingResult, cookingSource, cookingExperience, 100, RecipeType.SMOKER);
     }
 
-    public AdditionSmokerRecipe(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult, int cookingTime) {
+    public AdditionSmokerRecipe(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult, int cookingTime) {
         super(cookingResult, cookingSource, 0, cookingTime, RecipeType.SMOKER);
     }
 
-    public AdditionSmokerRecipe(@NonNull AdditionItemStack cookingResult, @NonNull AdditionItemStack cookingSource) {
+    public AdditionSmokerRecipe(@NonNull ItemStack cookingResult, @NonNull ItemStack cookingSource) {
         super(cookingResult, cookingSource, 0, 100, RecipeType.SMOKER);
     }
 

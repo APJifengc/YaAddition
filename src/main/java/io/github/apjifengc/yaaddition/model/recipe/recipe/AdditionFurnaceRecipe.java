@@ -1,7 +1,8 @@
 
 package io.github.apjifengc.yaaddition.model.recipe.recipe;
 
-import io.github.apjifengc.yaaddition.addition.AdditionItemStack;
+import org.bukkit.inventory.ItemStack;
+
 import io.github.apjifengc.yaaddition.model.recipe.util.RecipeType;
 
 import lombok.NonNull;
@@ -25,21 +26,21 @@ public class AdditionFurnaceRecipe extends AdditionCookingRecipe {
      * @param cookingExperience 经验
      * @param cookingTime       烧制时间
      */
-    public AdditionFurnaceRecipe(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult, float cookingExperience,
+    public AdditionFurnaceRecipe(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult, float cookingExperience,
             int cookingTime) {
         super(cookingSource, cookingResult, cookingExperience, cookingTime, RecipeType.FURNACE);
     }
 
-    public AdditionFurnaceRecipe(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult,
+    public AdditionFurnaceRecipe(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult,
             float cookingExperience) {
         super(cookingSource, cookingResult, cookingExperience, 200, RecipeType.FURNACE);
     }
 
-    public AdditionFurnaceRecipe(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult, int cookingTime) {
+    public AdditionFurnaceRecipe(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult, int cookingTime) {
         super(cookingSource, cookingResult, 0, cookingTime, RecipeType.FURNACE);
     }
 
-    public AdditionFurnaceRecipe(@NonNull AdditionItemStack cookingSource, @NonNull AdditionItemStack cookingResult) {
+    public AdditionFurnaceRecipe(@NonNull ItemStack cookingSource, @NonNull ItemStack cookingResult) {
         super(cookingSource, cookingResult, 0, 200, RecipeType.FURNACE);
     }
 

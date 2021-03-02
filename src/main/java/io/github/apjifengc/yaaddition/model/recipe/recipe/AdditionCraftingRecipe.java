@@ -1,5 +1,6 @@
 package io.github.apjifengc.yaaddition.model.recipe.recipe;
 
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.io.BukkitObjectInputStream;
 
 import lombok.Getter;
@@ -11,7 +12,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
 
-import io.github.apjifengc.yaaddition.addition.AdditionItemStack;
 import io.github.apjifengc.yaaddition.exception.RecipeException;
 import io.github.apjifengc.yaaddition.model.recipe.util.RecipeType;
 
@@ -22,13 +22,13 @@ public abstract class AdditionCraftingRecipe extends AdditionRecipe {
 
     @Getter
     @Setter
-    protected AdditionItemStack[] craftingSource;
+    protected ItemStack[] craftingSource;
 
     protected AdditionCraftingRecipe(@NonNull RecipeType type) {
         this.type = type;
     }
 
-    protected AdditionCraftingRecipe(AdditionItemStack[] craftingSource, AdditionItemStack craftingResult, @NonNull RecipeType type) {
+    protected AdditionCraftingRecipe(ItemStack[] craftingSource, ItemStack craftingResult, @NonNull RecipeType type) {
         this.craftingSource = craftingSource;
         this.result = craftingResult;
         this.type = type;
@@ -56,8 +56,8 @@ public abstract class AdditionCraftingRecipe extends AdditionRecipe {
 
             if (readMap instanceof HashMap) {
                 map.putAll((HashMap) readMap);
-                setResult((AdditionItemStack) map.get("result"));
-                this.craftingSource = (AdditionItemStack[]) map.get("craftingSource");
+                setResult((ItemStack) map.get("result"));
+                this.craftingSource = (ItemStack[]) map.get("craftingSource");
                 this.type = (RecipeType) map.get("type");
             }
         }
