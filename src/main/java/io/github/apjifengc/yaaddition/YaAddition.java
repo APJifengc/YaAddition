@@ -1,20 +1,53 @@
 package io.github.apjifengc.yaaddition;
 
-import io.github.apjifengc.yaaddition.recipe.builder.InGameRecipeBuilder;
+import io.github.apjifengc.yaaddition.addition.AdditionMaterial;
+import io.github.apjifengc.yaaddition.command.CommandDebug;
+import io.github.apjifengc.yaaddition.core.SpecialNoteBlock;
+import io.github.apjifengc.yaaddition.core.SpecialTripWire;
+import io.github.apjifengc.yaaddition.core.listener.BlockListener;
+import io.github.apjifengc.yaaddition.exception.MaterialAlreadyRegisteredException;
+import io.github.apjifengc.yaaddition.model.recipe.builder.InGameRecipeBuilder;
+import io.github.bananapuncher714.nbteditor.NBTEditor;
 
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import lombok.Getter;
+import java.util.Collections;
 
 public final class YaAddition extends JavaPlugin {
-    @Getter
-    private static YaAddition instance;
+    static YaAddition instance;
+
+    public YaAddition() {
+        instance = this;
+    }
+
+    public static YaAddition getInstance() {
+        return instance;
+    }
 
     @Override
     public void onEnable() {
-        instance = this;
-        // 加载本插件所有配方
-        InGameRecipeBuilder.buildAll();
+        new SpecialNoteBlock(this);
+        new SpecialTripWire(this);
+        new BlockListener(this);
+        new CommandDebug().register();
+        AdditionMaterial test = new AdditionMaterial(AdditionMaterial.AdditionMaterialType.ITEM, "TEST_ITEM", null,
+                "test", Collections.singletonList("YAY"));
+        AdditionMaterial testBlock = new AdditionMaterial(AdditionMaterial.AdditionMaterialType.FULL_BLOCK,
+                "TEST_BLOCK", null, "test block", Collections.singletonList("GREAT"));
+        try {
+            test.register();
+            testBlock.register();
+        } catch (MaterialAlreadyRegisteredException e) {
+            e.printStackTrace();
+        }
+        ItemStack[] source = new ItemStack[9];
+        source[0] = new ItemStack(Material.BEDROCK, 1);
+        ItemStack result = new ItemStack(Material.GOLDEN_HOE, 1);
+        result = NBTEditor.set(result, "bwb", "awa");
+        InGameRecipeBuilder.shaped(source, result, "bwb");
+        InGameRecipeBuilder.furnace(source[0], result, 100, 10, "awa");
     }
 
     @Override

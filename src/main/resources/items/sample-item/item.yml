@@ -1,0 +1,4 @@
+id: sample_item
+model: item/handheld
+textures:
+  layer0: custom/sample_item/ruby
