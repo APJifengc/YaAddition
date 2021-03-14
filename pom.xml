@@ -11,12 +11,12 @@
 
     <name>YaAddition</name>
 
-    <description>Create custom blocks, items and more for your server or plugin.</description>
+    <description>YaAddition</description>
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    <url>https://github.com/Yallage</url>
+    <url>blog.nanokylin.com</url>
 
     <build>
         <plugins>

@@ -54,4 +54,5 @@ public final class YaAddition extends JavaPlugin {
     public void onDisable() {
         // Plugin shutdown logic
     }
+
 }
