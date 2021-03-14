@@ -42,12 +42,6 @@ public final class YaAddition extends JavaPlugin {
         } catch (MaterialAlreadyRegisteredException e) {
             e.printStackTrace();
         }
-        ItemStack[] source = new ItemStack[9];
-        source[0] = new ItemStack(Material.BEDROCK, 1);
-        ItemStack result = new ItemStack(Material.GOLDEN_HOE, 1);
-        result = NBTEditor.set(result, "bwb", "awa");
-        InGameRecipeBuilder.shaped(source, result, "bwb");
-        InGameRecipeBuilder.furnace(source[0], result, 100, 10, "awa");
     }
 
     @Override
