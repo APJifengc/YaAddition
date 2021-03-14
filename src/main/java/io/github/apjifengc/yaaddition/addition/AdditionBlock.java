@@ -22,7 +22,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@SuppressWarnings("unused")
 public class AdditionBlock {
     private static final Map<Location, AdditionBlock> loadedBlocks = new HashMap<>();
     @Getter @Setter private AdditionMaterial material;
@@ -196,7 +195,7 @@ public class AdditionBlock {
     }
 
     public int getBlockPower(@NotNull BlockFace face) {
-        return block.getBlockPower();
+        return block.getBlockPower(face);
     }
 
     public int getBlockPower() {

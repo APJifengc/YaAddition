@@ -3,12 +3,10 @@ package io.github.apjifengc.yaaddition.core;
 import com.rabbitown.yalib.module.nms.base.block.NMSBlock;
 import io.github.apjifengc.yaaddition.YaAddition;
 import io.github.apjifengc.yaaddition.addition.AdditionBlock;
-import io.github.apjifengc.yaaddition.addition.AdditionMaterial;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.type.NoteBlock;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -19,7 +17,6 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Predicate;
 
 public class SpecialNoteBlock implements Listener {
     private static final Map<Instrument, Sound> soundMap = new HashMap<>();

@@ -11,12 +11,12 @@
 
     <name>YaAddition</name>
 
-    <description>Create custom blocks, items and more for your server or plugin.</description>
+    <description>YaAddition</description>
     <properties>
-        <java.version>1.11</java.version>
+        <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    <url>https://github.com/Yallage</url>
+    <url>blog.nanokylin.com</url>
 
     <build>
         <plugins>
@@ -87,6 +87,13 @@
     </repositories>
 
     <dependencies>
+        <dependency>
+            <groupId>craftbukkit-mixed</groupId>
+            <artifactId>craftbukkit-mixed</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/craftbukkit-mixed.jar</systemPath>
+        </dependency>
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>

@@ -3,20 +3,9 @@ package io.github.apjifengc.yaaddition.addition;
 import io.github.apjifengc.yaaddition.util.Data;
 import io.github.bananapuncher714.nbteditor.NBTEditor;
 import lombok.Getter;
-import lombok.Setter;
-import org.bukkit.ChatColor;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
-/**
- * A class that contains a addition item stack.
- *
- * @author APJifengc
- */
 public class AdditionItemStack {
     @Getter
     private final AdditionMaterial material;
@@ -24,7 +13,6 @@ public class AdditionItemStack {
     private final int amount;
     @Getter
     private final Data data;
-    @Getter
     private final ItemStack itemStack;
     @Getter
     @Setter
@@ -77,7 +65,7 @@ public class AdditionItemStack {
      * @param data     The data of the item.
      */
     public AdditionItemStack(final String material, int amount, Data data) {
-        this(AdditionMaterial.byId(material), 1, data);
+        this(AdditionMaterial.byId(material), amount, data);
     }
 
     //<editor-fold desc="Constructors">
@@ -121,7 +109,7 @@ public class AdditionItemStack {
      * @param data     The data of the item.
      */
     public AdditionItemStack(final String material, int amount, String data) {
-        this(AdditionMaterial.byId(material), 1, data);
+        this(AdditionMaterial.byId(material), amount, data);
     }
 
     /**
@@ -159,10 +147,9 @@ public class AdditionItemStack {
      * @param amount   The amount of the item.
      */
     public AdditionItemStack(final String material, int amount) {
-        this(AdditionMaterial.byId(material), 1);
+        this(AdditionMaterial.byId(material), amount);
     }
-
-    //</editor-fold>
+    // </editor-fold>
 
     private List<String> generateLore() {
         List<String> lore = material.getLore().stream().map(str -> ChatColor.GRAY + str).collect(Collectors.toList());
@@ -211,8 +198,7 @@ public class AdditionItemStack {
      * @return The addition item stack.
      */
     public static ItemStack asBukkitCopy(AdditionItemStack itemStack) {
-        return NBTEditor.set(
-                NBTEditor.set(itemStack.itemStack, itemStack.data.toString(), "addition", "data"),
+        return NBTEditor.set(NBTEditor.set(itemStack.itemStack, itemStack.data.toString(), "addition", "data"),
                 itemStack.material.getIdentifier(), "addition", "id");
     }
 
